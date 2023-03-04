@@ -39,10 +39,7 @@ export default async function RootLayout({
                 <title>New app</title>
             </head>
             <Script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></Script>
-            <body className="wrapper flex flex-col dark:bg-[#05091a]">
-                <div className="fixed w-screen bg-white dark:bg-[#05091a] z-10">
-                    {/* <Navbar session={session} /> */}
-                </div>
+            <body className="max-w-[1400px] mx-auto flex items-center flex-col dark:bg-[#05091a]">
                 <Providers>{children}</Providers>
             </body>
             {/* <Footer /> */}
