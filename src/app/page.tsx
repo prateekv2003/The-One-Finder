@@ -10,6 +10,7 @@ import Pricing from "components/Landing/Pricing";
 import Footer from "components/Landing/Footer";
 
 import Recs from "components/Recs";
+import CTA from "components/Landing/CTA";
 
 type Props = {};
 
@@ -19,11 +20,11 @@ const Page = (props: Props) => {
             <Navbar />
             <Hero />
             {/* <CardAnimation /> */}
+            <CTA/>
             <Features />
             <Testimonials />
             <Pricing />
             <Footer />
-            <Recs/>
         </div>
     );
 };

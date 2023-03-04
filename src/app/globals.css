@@ -47,6 +47,9 @@
     }
 }
 
+html{
+  overflow-x: hidden;
+}
 
 .swipe {
   position: absolute;

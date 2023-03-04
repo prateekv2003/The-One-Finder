@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -78,7 +79,7 @@ function Advanced() {
   };
 
   return (
-    <div className=" overflow-hidden w-full max-w-[1280px]">
+    <div className=" overflow-x-hidden w-full max-w-[1280px]">
       <div className="w-full flex flex-col space-y-4 items-center">
         <div className="cardContainer">
           {db.map((character, index) => (
@@ -88,6 +89,7 @@ function Advanced() {
               key={character.name}
               onSwipe={(dir) => swiped(dir, character.name, index)}
               onCardLeftScreen={() => outOfFrame(character.name, index)}
+              preventSwipe={["up", "down"]}
             >
               <div
                 style={{ backgroundImage: "url(" + character.url + ")" }}
