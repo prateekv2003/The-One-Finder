@@ -87,6 +87,7 @@ function Advanced() {
             key={character.name}
             onSwipe={(dir) => swiped(dir, character.name, index)}
             onCardLeftScreen={() => outOfFrame(character.name, index)}
+            // onCardRightScreen={() => outOfFrame(character.name, index)}
           >
             <div
               style={{ backgroundImage: "url(" + character.url + ")" }}
