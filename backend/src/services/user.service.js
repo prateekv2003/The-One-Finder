@@ -79,6 +79,16 @@ const deleteUserById = async (userId) => {
   return user;
 };
 
+const getRecommendations = async (userId) => {
+  console.log(userId);
+  const user = await getUserById(userId);
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
+  }
+  const rec = await User.find({ profile_score: { $gte: user.profile_score - 15, $lte: user.profile_score + 15 } });
+  return rec;
+};
+
 module.exports = {
   createUser,
   queryUsers,
@@ -86,4 +96,5 @@ module.exports = {
   getUserByEmail,
   updateUserById,
   deleteUserById,
+  getRecommendations,
 };

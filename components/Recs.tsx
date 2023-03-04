@@ -79,8 +79,9 @@ function Advanced() {
   };
 
   return (
-    <div className=" overflow-x-hidden w-full max-w-[1280px]">
-      <div className="w-full flex flex-col space-y-4 items-center">
+    <div className="overflow-x-hidden flex items-center w-screen max-w-[1280px]">
+      <div className="w-[30%] border-r-2">chat section</div>
+      <div className="w-[70%] flex flex-col space-y-4 items-center">
         <div className="cardContainer">
           {db.map((character, index) => (
             <TinderCard
