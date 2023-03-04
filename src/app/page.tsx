@@ -23,8 +23,7 @@ const Page = (props: Props) => {
             <Testimonials />
             <Pricing />
             <Footer />
-
-            {/* <Recs /> */}
+            <Recs/>
         </div>
     );
 };

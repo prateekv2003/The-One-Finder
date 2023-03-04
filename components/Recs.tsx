@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useRef } from "react";
 import TinderCard from "react-tinder-card";
-import { BsHeart, BsHeartFill, } from "react-icons/bs";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { CgUndo } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 const db: { name: String; url: String }[] = [
@@ -78,48 +78,49 @@ function Advanced() {
   };
 
   return (
-    <div className="m-16 space-y-6">
-      <div className="cardContainer">
-        {db.map((character, index) => (
-          <TinderCard
-            ref={childRefs[index]}
-            className="swipe"
-            key={character.name}
-            onSwipe={(dir) => swiped(dir, character.name, index)}
-            onCardLeftScreen={() => outOfFrame(character.name, index)}
-            // onCardRightScreen={() => outOfFrame(character.name, index)}
-          >
-            <div
-              style={{ backgroundImage: "url(" + character.url + ")" }}
-              className="card"
+    <div className=" overflow-hidden w-full max-w-[1280px]">
+      <div className="w-full flex flex-col space-y-4 items-center">
+        <div className="cardContainer">
+          {db.map((character, index) => (
+            <TinderCard
+              ref={childRefs[index]}
+              className="swipe"
+              key={character.name}
+              onSwipe={(dir) => swiped(dir, character.name, index)}
+              onCardLeftScreen={() => outOfFrame(character.name, index)}
             >
-              <h3>{character.name}</h3>
-            </div>
-          </TinderCard>
-        ))}
-      </div>
-      <div className="flex space-x-4">
-        <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-          className="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800"
-          onClick={() => swipe("left")}
-        >
-            <RxCross2 className="w-5 h-5"/>
-        </button>
-        <button
-          style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
-          className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
-          onClick={() => goBack()}
-        >
-            <CgUndo className="w-5 h-5"/>
-        </button>
-        <button
-          style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-          className="text-pink-700 border border-pink-700 hover:bg-pink-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-pink-500 dark:text-pink-500 dark:hover:text-white dark:focus:pink-blue-800"
-          onClick={() => swipe("right")}
-        >
-            <BsHeart className="w-5 h-5"/>
-        </button>
+              <div
+                style={{ backgroundImage: "url(" + character.url + ")" }}
+                className="card"
+              >
+                <h3>{character.name}</h3>
+              </div>
+            </TinderCard>
+          ))}
+        </div>
+        <div className="flex space-x-4">
+          <button
+            style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+            className="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800"
+            onClick={() => swipe("left")}
+          >
+            <RxCross2 className="w-5 h-5" />
+          </button>
+          <button
+            style={{ backgroundColor: !canGoBack && "#c3c4d3" }}
+            className="text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800"
+            onClick={() => goBack()}
+          >
+            <CgUndo className="w-5 h-5" />
+          </button>
+          <button
+            style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+            className="text-pink-700 border border-pink-700 hover:bg-pink-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-pink-500 dark:text-pink-500 dark:hover:text-white dark:focus:pink-blue-800"
+            onClick={() => swipe("right")}
+          >
+            <BsHeart className="w-5 h-5" />
+          </button>
+        </div>
       </div>
     </div>
   );
