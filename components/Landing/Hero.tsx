@@ -8,7 +8,7 @@ import {
     useBreakpointValue,
 } from "@chakra-ui/react";
 
-import HeroImage from "../../public/landing/hero.gif";
+import HeroImage from "../../public/Swipe.svg";
 
 import { subtitle } from "../../static";
 
