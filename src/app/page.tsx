@@ -7,7 +7,7 @@ import CardAnimation from "components/Landing/CardAnimation";
 import Features from "components/Landing/Features";
 import Testimonials from "components/Landing/Testimonials";
 import Footer from "components/Landing/Footer";
-
+import Recs from "components/Recs";
 type Props = {};
 
 const Page = (props: Props) => {
@@ -19,6 +19,7 @@ const Page = (props: Props) => {
             <Features />
             <Testimonials />
             <Footer />
+            <Recs/>
         </div>
     );
 };
