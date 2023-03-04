@@ -68,14 +68,14 @@ export default function Navbar() {
                     </HStack>
                     <Flex alignItems={"center"}>
                         <Button
-                            className="hover:scale-105 bg-pink-500"
+                            className="text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
                             variant={"solid"}
-                            colorScheme={"teal"}
+                            // colorScheme={"teal"}
                             size={"sm"}
                             mr={4}
                             rightIcon={<ArrowForwardIcon />}
                         >
-                            Login
+                            <Link href="/login">Login</Link>
                         </Button>
                         <Menu>
                             <MenuButton
