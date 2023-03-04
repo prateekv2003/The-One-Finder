@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
 import {
     Box,
     Stack,
@@ -13,8 +13,18 @@ import {
     Button,
 } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
-import frontendURL from '../../static';
+import { frontendURL } from "../../static";
+
 function PriceWrapper({ children }: { children: ReactNode }) {
+    useEffect(() => {
+        const script = document.createElement("script");
+        script.src = "https://js.stripe.com/v3/";
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            document.body.removeChild(script);
+        };
+    }, []);
     return (
         <Box
             mb={4}
@@ -31,11 +41,11 @@ function PriceWrapper({ children }: { children: ReactNode }) {
 
 export default function Pricing() {
     const [message, setMessage] = useState("");
-    const handleClick = (e: any) => {
-        e.preventDefault();
+    const handleClick = () => {
+        // e.preventDefault();
 
         try {
-            var stripe = Stripe(
+            const stripe = Stripe(
                 "pk_test_51LpQxaSClQus7pNZ0lQl5OXXTRBljK1u01ZRUMbjpDftwojlCqmFxvfP73P1e1mbE89SXJtifG1zifX8yzBHQvyS00i1h5qv1Q"
             );
 
@@ -48,8 +58,8 @@ export default function Pricing() {
                         },
                     ],
                     mode: "subscription",
-                    successUrl: { frontendURL},
-                    cancelUrl: { frontendURL}},
+                    successUrl: frontendURL,
+                    cancelUrl: frontendURL,
                 })
                 .then(function () {
                     alert("Payment Successful!");

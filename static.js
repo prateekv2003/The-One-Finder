@@ -7,4 +7,4 @@ const features = [
     { "Premium Membership Benefits": "By upgrading to our premium membership plans, users can unlock exclusive benefits and features, including advanced search options, unlimited likes and matches, and access to a community of like - minded singles." }
 ]
 const frontendURL = "http://localhost:3000/"
-export { name, subtitle, features };
+export { name, subtitle, features, frontendURL };

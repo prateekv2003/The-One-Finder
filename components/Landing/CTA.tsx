@@ -6,7 +6,7 @@ type Props = {};
 
 const CTA = (props: Props) => {
     return (
-        <section className="bg-white dark:bg-gray-900">
+        <section className="bg-white dark:bg-gray-900 h-screen">
             <div className="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
                 <img
                     className="w-full dark:hidden"
@@ -31,7 +31,7 @@ const CTA = (props: Props) => {
                     </p>
                     <a
                         href="#"
-                        className="inline-flex items-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-primary-900"
+                        className="inline-flex items-center text-white bg-fuchsia-700 hover:bg-fuchsia-800 focus:ring-4 focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-fuchsia-900"
                     >
                         Get started
                         <svg
