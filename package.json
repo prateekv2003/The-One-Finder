@@ -16,6 +16,8 @@
     "@heroicons/react": "^2.0.14",
     "@next/font": "13.1.6",
     "@prisma/client": "^4.9.0",
+    "@sendbird/chat": "^4.5.0",
+    "@sendbird/uikit-react": "^3.3.7",
     "@types/node": "18.11.18",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
@@ -36,6 +38,8 @@
     "react-hook-form": "^7.43.0",
     "react-icons": "^4.7.1",
     "recoil": "^0.7.6",
+    "stream-chat": "^8.4.1",
+    "stream-chat-react": "^10.7.1",
     "typescript": "4.9.5"
   },
   "devDependencies": {
