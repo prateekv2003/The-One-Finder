@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import {
     Box,
     Stack,
@@ -13,7 +13,7 @@ import {
     Button,
 } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
-
+import frontendURL from '../../static';
 function PriceWrapper({ children }: { children: ReactNode }) {
     return (
         <Box
@@ -30,15 +30,44 @@ function PriceWrapper({ children }: { children: ReactNode }) {
 }
 
 export default function Pricing() {
+    const [message, setMessage] = useState("");
+    const handleClick = (e: any) => {
+        e.preventDefault();
+
+        try {
+            var stripe = Stripe(
+                "pk_test_51LpQxaSClQus7pNZ0lQl5OXXTRBljK1u01ZRUMbjpDftwojlCqmFxvfP73P1e1mbE89SXJtifG1zifX8yzBHQvyS00i1h5qv1Q"
+            );
+
+            stripe
+                .redirectToCheckout({
+                    lineItems: [
+                        {
+                            price: "price_1LqIhhSClQus7pNZnhtG5hU8",
+                            quantity: 1,
+                        },
+                    ],
+                    mode: "subscription",
+                    successUrl: { frontendURL},
+                    cancelUrl: { frontendURL}},
+                })
+                .then(function () {
+                    alert("Payment Successful!");
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
     return (
         <Box py={12}>
             <VStack spacing={2} textAlign="center">
                 <Heading as="h1" fontSize="4xl">
-                    Plans that fit your needs
+                    Your soulmate is waiting!
                 </Heading>
                 <Text fontSize="lg" color={"gray.500"}>
-                    Start with 14-day free trial. No credit card needed. Cancel
-                    at anytime.
+                    Start with 14-day free trial. No cpurpleit card needed.
+                    Cancel at anytime.
                 </Text>
             </VStack>
             <Stack
@@ -55,7 +84,7 @@ export default function Pricing() {
                         </Text>
                         <HStack justifyContent="center">
                             <Text fontSize="3xl" fontWeight="600">
-                                $
+                                ₹
                             </Text>
                             <Text fontSize="5xl" fontWeight="900">
                                 79
@@ -74,28 +103,28 @@ export default function Pricing() {
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Unlimited likes
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Unlimited matches
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Ad-free experience
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Basic profile verification
                             </ListItem>
@@ -103,8 +132,10 @@ export default function Pricing() {
                         <Box w="80%" pt={7}>
                             <Button
                                 w="full"
-                                colorScheme="red"
+                                colorScheme="purple"
                                 variant="outline"
+                                onClick={handleClick}
+                                id="checkout"
                             >
                                 Start trial
                             </Button>
@@ -122,7 +153,10 @@ export default function Pricing() {
                         >
                             <Text
                                 textTransform="uppercase"
-                                bg={useColorModeValue("red.300", "red.700")}
+                                bg={useColorModeValue(
+                                    "purple.300",
+                                    "purple.700"
+                                )}
                                 px={3}
                                 py={1}
                                 color={useColorModeValue(
@@ -142,7 +176,7 @@ export default function Pricing() {
                             </Text>
                             <HStack justifyContent="center">
                                 <Text fontSize="3xl" fontWeight="600">
-                                    $
+                                    ₹
                                 </Text>
                                 <Text fontSize="5xl" fontWeight="900">
                                     149
@@ -161,34 +195,39 @@ export default function Pricing() {
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="green.500"
+                                        color="purple.500"
                                     />
                                     All Basic Plan features
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="green.500"
+                                        color="purple.500"
                                     />
                                     Premium profile verification
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="green.500"
+                                        color="purple.500"
                                     />
                                     Boosted profile visibility
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="green.500"
+                                        color="purple.500"
                                     />
                                     Ability to see who likes your profile
                                 </ListItem>
                             </List>
                             <Box w="80%" pt={7}>
-                                <Button w="full" colorScheme="red">
+                                <Button
+                                    onClick={handleClick}
+                                    id="checkout"
+                                    w="full"
+                                    colorScheme="purple"
+                                >
                                     Start trial
                                 </Button>
                             </Box>
@@ -202,7 +241,7 @@ export default function Pricing() {
                         </Text>
                         <HStack justifyContent="center">
                             <Text fontSize="3xl" fontWeight="600">
-                                $
+                                ₹
                             </Text>
                             <Text fontSize="5xl" fontWeight="900">
                                 349
@@ -221,28 +260,28 @@ export default function Pricing() {
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 All Plus Plan features
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Personalized matchmaking
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 One-on-one consultation with a matchmaker
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="green.500"
+                                    color="purple.500"
                                 />
                                 Exclusive access to premium features and events
                             </ListItem>
@@ -250,8 +289,10 @@ export default function Pricing() {
                         <Box w="80%" pt={7}>
                             <Button
                                 w="full"
-                                colorScheme="red"
+                                colorScheme="purple"
                                 variant="outline"
+                                onClick={handleClick}
+                                id="checkout"
                             >
                                 Start trial
                             </Button>
