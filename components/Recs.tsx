@@ -6,28 +6,28 @@ import { CgUndo } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { AiOutlineStar } from "react-icons/ai";
-const db: { name: String; url: String }[] = [
-  {
-    name: "Richard Hendricks",
-    url: "./richard.jpg",
-  },
-  {
-    name: "Erlich Bachman",
-    url: "./erlich.jpg",
-  },
-  {
-    name: "Monica Hall",
-    url: "./monica.jpg",
-  },
-  {
-    name: "Jared Dunn",
-    url: "./jared.jpg",
-  },
-  {
-    name: "Dinesh Chugtai",
-    url: "./dinesh.jpg",
-  },
-];
+// const db: { name: String; url: String }[] = [
+//   {
+//     name: "Richard Hendricks",
+//     url: "./richard.jpg",
+//   },
+//   {
+//     name: "Erlich Bachman",
+//     url: "./erlich.jpg",
+//   },
+//   {
+//     name: "Monica Hall",
+//     url: "./monica.jpg",
+//   },
+//   {
+//     name: "Jared Dunn",
+//     url: "./jared.jpg",
+//   },
+//   {
+//     name: "Dinesh Chugtai",
+//     url: "./dinesh.jpg",
+//   },
+// ];
 
 
 function Advanced() {

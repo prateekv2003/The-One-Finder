@@ -49,7 +49,7 @@ export default function Pricing() {
                     ],
                     mode: "subscription",
                     successUrl: { frontendURL},
-                    cancelUrl: { frontendURL}},
+                    cancelUrl: { frontendURL},
                 })
                 .then(function () {
                     alert("Payment Successful!");
