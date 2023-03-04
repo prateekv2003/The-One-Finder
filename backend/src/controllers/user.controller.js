@@ -34,10 +34,17 @@ const deleteUser = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+const getRecommendations = catchAsync(async (req, res) => {
+  // console.log(req.query.userId);
+  const users = await userService.getRecommendations('640343f1017385e590c1c4b3');
+  res.send(users);
+});
+
 module.exports = {
   createUser,
   getUsers,
   getUser,
   updateUser,
   deleteUser,
+  getRecommendations,
 };
