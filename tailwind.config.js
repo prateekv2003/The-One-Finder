@@ -53,6 +53,6 @@ module.exports = {
   },
   plugins: [
     // require("tailgrids/plugin"),
-    require("flowbite/plugin"),
+    // require("flowbite/plugin"),
   ]
 };
