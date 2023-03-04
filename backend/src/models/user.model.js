@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
       minlength: 8,
       validate(value) {
@@ -40,9 +40,69 @@ const userSchema = mongoose.Schema(
       enum: roles,
       default: 'user',
     },
-    isEmailVerified: {
+    isVerified: {
       type: Boolean,
       default: false,
+    },
+    bio: String,
+    college: String,
+    createdAt: Number,
+    dob: Number,
+    gender: {
+      type: String,
+      enum: ['M', 'F', 'NB'],
+      default: 'M',
+    },
+    height: Number,
+    interests: [String],
+    is_habit_drink: {
+      type: String,
+      enum: ['N', 'S', 'O', 'U'],
+      default: 'N',
+    },
+    is_habit_smoke: {
+      type: String,
+      enum: ['N', 'S', 'O', 'U'],
+      default: 'N',
+    },
+    is_verified: Boolean,
+    mobile: Number,
+    status: Boolean,
+    what_to_find: {
+      type: String,
+      enum: ['C', 'R', 'NS', 'F', 'CON'],
+      default: 'C',
+    },
+    who_to_date: {
+      type: String,
+      enum: ['F', 'M', 'A', 'NB'],
+      default: 'F',
+    },
+    is_subscribed: Boolean,
+    age: Number,
+    preference: {
+      minAge: {
+        type: Number,
+        default: 16,
+      },
+      maxAge: {
+        type: Number,
+        default: 90,
+      },
+      minHeight: {
+        type: Number,
+        default: 0,
+      },
+      is_habit_drink: {
+        type: String,
+        enum: ['N', 'S', 'O', 'U'],
+        default: 'N',
+      },
+      is_habit_smoke: {
+        type: String,
+        enum: ['N', 'S', 'O', 'U'],
+        default: 'N',
+      },
     },
   },
   {
