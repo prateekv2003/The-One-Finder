@@ -80,6 +80,17 @@ const userSchema = mongoose.Schema(
     },
     is_subscribed: Boolean,
     age: Number,
+    likes_received: Number,
+    dislikes_recieved: Number,
+    dislikes_done: Number,
+    likes_done: Number,
+    views: Number,
+    matches: Number,
+    dislikes_by_likes_ratio_recieved: Number,
+    dislikes_by_likes_ratio_done: Number,
+    completion_status: Number,
+    profile_score: Number,
+
     preference: {
       minAge: {
         type: Number,
