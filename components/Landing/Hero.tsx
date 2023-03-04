@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import HeroImage from "../../public/landing/hero.gif";
+
 import { subtitle } from "../../static";
 
 export default function Hero() {
