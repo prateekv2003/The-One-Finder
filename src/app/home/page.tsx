@@ -1,11 +1,13 @@
-import React from 'react'
-import Recs from '../../../components/Recs'
-type Props = {}
+import React from "react";
+import Recs from "../../../components/Recs";
+type Props = {};
 
 const Home = (props: Props) => {
   return (
-    <Recs/>
-  )
-}
+    <div className="w-screen h-screen flex items-center justify-center">
+      <Recs />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
