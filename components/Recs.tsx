@@ -1,43 +1,49 @@
 "use client"
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { CgUndo } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
-const db: { name: String; url: String }[] = [
-  {
-    name: "Richard Hendricks",
-    url: "./richard.jpg",
-  },
-  {
-    name: "Erlich Bachman",
-    url: "./erlich.jpg",
-  },
-  {
-    name: "Monica Hall",
-    url: "./monica.jpg",
-  },
-  {
-    name: "Jared Dunn",
-    url: "./jared.jpg",
-  },
-  {
-    name: "Dinesh Chugtai",
-    url: "./dinesh.jpg",
-  },
-];
+import Link from "next/link";
+import { AiOutlineStar } from "react-icons/ai";
+// const db: { name: String; url: String }[] = [
+//   {
+//     name: "Richard Hendricks",
+//     url: "./richard.jpg",
+//   },
+//   {
+//     name: "Erlich Bachman",
+//     url: "./erlich.jpg",
+//   },
+//   {
+//     name: "Monica Hall",
+//     url: "./monica.jpg",
+//   },
+//   {
+//     name: "Jared Dunn",
+//     url: "./jared.jpg",
+//   },
+//   {
+//     name: "Dinesh Chugtai",
+//     url: "./dinesh.jpg",
+//   },
+// ];
+
+
 function Advanced() {
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1);
   const [lastDirection, setLastDirection] = useState();
+  const [recs, setRecs] = useState([])
+  const [superLike, setSuperLike] = useState(false)
+  const [currentIndex, setCurrentIndex] = useState(recs.length - 1);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
   const childRefs = useMemo(
     () =>
-      Array(db.length)
+      Array(recs.length)
         .fill(0)
         .map((i) => React.createRef()),
-    []
+    [recs.length]
   );
 
   const updateCurrentIndex = (val: number) => {
@@ -45,7 +51,7 @@ function Advanced() {
     currentIndexRef.current = val;
   };
 
-  const canGoBack = currentIndex < db.length - 1;
+  const canGoBack = currentIndex < recs.length - 1;
 
   const canSwipe = currentIndex >= 0;
 
@@ -65,7 +71,7 @@ function Advanced() {
   };
 
   const swipe = async (dir: any) => {
-    if (canSwipe && currentIndex < db.length) {
+    if (canSwipe && currentIndex < recs.length) {
       await childRefs[currentIndex].current.swipe(dir); // Swipe the card!
     }
   };
@@ -78,11 +84,24 @@ function Advanced() {
     await childRefs[newIndex].current.restoreCard();
   };
 
+
+  useEffect(() => {
+    fetch("http://localhost:5000/v1/rec?userId=640343f1017385e590c1c4b3")
+    .then((res) => res.json())
+    .then((data) => {
+      data.length=20
+      setRecs(data)
+      console.log(data)
+    })
+  }, [])
+  
+
   return (
-    <div className=" overflow-x-hidden w-full max-w-[1280px]">
-      <div className="w-full flex flex-col space-y-4 items-center">
+    <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen">
+      <div className="md:w-[30%] border-r-2">chat section</div>
+      <div className="md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
         <div className="cardContainer">
-          {db.map((character, index) => (
+          {recs && Array.isArray(recs) && recs.map((character, index) => (
             <TinderCard
               ref={childRefs[index]}
               className="swipe"
@@ -92,10 +111,10 @@ function Advanced() {
               preventSwipe={["up", "down"]}
             >
               <div
-                style={{ backgroundImage: "url(" + character.url + ")" }}
+                style={{ backgroundImage: `url(https://xsgames.co/randomusers/avatar.php?g=${character.gender=='M'?'male':'female'})`}}
                 className="card"
               >
-                <h3>{character.name}</h3>
+                <Link href={`/profile/${character.id}`} className="card_name">{character.name}</Link>
               </div>
             </TinderCard>
           ))}
@@ -121,6 +140,13 @@ function Advanced() {
             onClick={() => swipe("right")}
           >
             <BsHeart className="w-5 h-5" />
+          </button>
+          <button
+            // style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
+          className={`${superLike?"bg-fuchsia-700 text-white  font-medium":"bg-white border text-fuchsia-700 border-fuchsia-700"} rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-fuchsia-500 dark:text-fuchsia-500 dark:hover:text-white`}
+            onClick={() => setSuperLike(!superLike)}
+          >
+            <AiOutlineStar className="w-5 h-5" />
           </button>
         </div>
       </div>
