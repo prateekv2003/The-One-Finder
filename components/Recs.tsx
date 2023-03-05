@@ -147,10 +147,9 @@ function Advanced({ userId }: Props) {
   }, []);
 
   return (
-    <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen relative">
+    <div className="overflow-x-hidden h-screen mx-auto flex flex-col-reverse md:flex-row items-center w-screen relative">
       <div className="absolute top-4 right-4">{/* <AvatarDropdown /> */}</div>
-      <div className="md:w-[30%] border-r-2">chat section</div>
-      <div className="relative md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
+      <div className="overflow-x-hidden overflow-y-scroll relative p-[1rem] h-full w-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
         <FilterForm onApplyClick={() => fetchRecs()} />
 
         <div className="cardContainer">
@@ -178,7 +177,7 @@ function Advanced({ userId }: Props) {
               </TinderCard>
             ))}
         </div>
-        <div className="flex space-x-4">
+        <div className="fixed bottom-5 left-0 right-0 justify-center sm:static flex mt-6 space-x-4 z-10">
           <button
             style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
             className="text-red-700 border border-red-700 hover:bg-red-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800"
@@ -212,6 +211,13 @@ function Advanced({ userId }: Props) {
             <AiOutlineStar className="w-5 h-5" />
           </button>
         </div>
+        <Link
+          href="/chat"
+          title="Contact Sale"
+          className="fixed z-90 top-5 right-8 sm:bottom-10 sm:left-8 bg-blue-600 w-12 h-12 sm:w-20 sm:h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-lg hover:bg-blue-700 hover:drop-shadow-2xl hover:animate-bounce duration-300"
+        >
+          &#9993;
+        </Link>
       </div>
     </div>
   );

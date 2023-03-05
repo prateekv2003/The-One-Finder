@@ -1,4 +1,4 @@
-const name = "MatchMaster";
+const name = "The One Finder";
 const subtitle = "Find your perfect match";
 
 const features = [

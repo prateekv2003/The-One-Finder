@@ -30,7 +30,7 @@ const CTA = (props: Props) => {
                         easy with features like Groups.
                     </p>
                     <a
-                        href="#"
+                        href="#pricing"
                         className="inline-flex items-center text-white bg-fuchsia-700 hover:bg-fuchsia-800 focus:ring-4 focus:ring-fuchsia-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:focus:ring-fuchsia-900"
                     >
                         Get started

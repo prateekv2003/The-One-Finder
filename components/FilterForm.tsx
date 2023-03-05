@@ -47,17 +47,17 @@ function MyListbox({ onApplyClick}) {
     setIsOpen(true);
   }
   return (
-    <div className="absolte top-0 bottom-0 right-0 flex items-center justify-around gap-4 p-12">
-      <div className="flex flex-col items-start gap-2">
+    <div className="absolte top-0 bottom-0 right-0 flex flex-wrap items-end justify-around gap-4 p-12 border rounded-sm bg-gray-200">
+      <div className="flex flex-col w-[45%] md:w-auto justify-end items-start gap-2">
         <label
           htmlFor="small"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm md:text-xl font-medium text-gray-900 dark:text-white"
         >
           Who to date?
         </label>
         <select
           id="small"
-          className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onClick={(e) => {
             setWhoFor(e.target.value);
           }}
@@ -69,16 +69,16 @@ function MyListbox({ onApplyClick}) {
           <option value="NB">Other</option>
         </select>
       </div>
-      <div className="flex flex-col items-start gap-2">
+      <div className="flex flex-col w-[45%] md:w-auto justify-end  items-start gap-2">
         <label
           htmlFor="small"
-          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          className="block mb-2 text-sm md:text-xl font-medium text-gray-900 dark:text-white"
         >
           What to find?
         </label>
         <select
           id="small"
-          className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onClick={(e) => {
             setWhatFor(e.target.value);
           }}
@@ -90,8 +90,8 @@ function MyListbox({ onApplyClick}) {
           <option value="F">Friendship</option>
         </select>
       </div>
-      <div className="flex gap-2">
-        <div className="flex items-center px-4 border border-gray-200 rounded dark:border-gray-700">
+      <div className="flex flex-wrap sm:flex-nowrap gap-4 items-end">
+        <div className="flex items-center px-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <input
             id="bordered-checkbox-1"
             type="checkbox"
@@ -104,12 +104,12 @@ function MyListbox({ onApplyClick}) {
           />
           <label
             htmlFor="bordered-checkbox-1"
-            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="w-full py-2 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Smooker
           </label>
         </div>
-        <div className="flex items-center px-4 border border-gray-200 rounded dark:border-gray-700">
+        <div className="flex items-center px-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
           <input
             id="bordered-checkbox-2"
             type="checkbox"
@@ -122,14 +122,14 @@ function MyListbox({ onApplyClick}) {
           />
           <label
             htmlFor="bordered-checkbox-2"
-            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            className="w-full py-2 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
             Drinker
           </label>
         </div>
         <button
           onClick={() => onApplyClick()}
-          className="text-white bg-fuchsia-500 border-0 py-2 px-8 focus:outline-none hover:bg-fuchsia-600 rounded text-lg cursor-pointer"
+          className="text-white bg-fuchsia-500 border-0 py-1 px-8 focus:outline-none hover:bg-fuchsia-600 rounded text-lg cursor-pointer"
         >
           Apply
         </button>

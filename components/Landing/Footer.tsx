@@ -14,7 +14,7 @@ import {
 import { ReactNode } from "react";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
-
+import { name } from "../../static";
 const Logo = (props: any) => {
     return (
         <svg
@@ -93,7 +93,7 @@ export default function Footer() {
                             />
                         </Box>
                         <Text fontSize={"sm"}>
-                            © 2022 Chakra Templates. All rights reserved
+                            © 2023 {name}. All rights reserved
                         </Text>
                         <Stack direction={"row"} spacing={6}>
                             <SocialButton label={"Twitter"} href={"#"}>
@@ -109,16 +109,14 @@ export default function Footer() {
                     </Stack>
                     <Stack align={"flex-start"}>
                         <ListHeader>Company</ListHeader>
-                        <Link href={"#"}>About us</Link>
-                        <Link href={"#"}>Blog</Link>
-                        <Link href={"#"}>Contact us</Link>
-                        <Link href={"#"}>Pricing</Link>
-                        <Link href={"#"}>Testimonials</Link>
+                        <Link href={"#home"}>About us</Link>
+                        <Link href={"#pricing"}>Pricing</Link>
+                        <Link href={"#testimonials"}>Testimonials</Link>
                     </Stack>
                     <Stack align={"flex-start"}>
                         <ListHeader>Support</ListHeader>
                         <Link href={"#"}>Help Center</Link>
-                        <Link href={"#"}>Terms of Service</Link>
+                        <Link href={"/tnc"}>Terms of Service</Link>
                         <Link href={"#"}>Legal</Link>
                         <Link href={"#"}>Privacy Policy</Link>
                         <Link href={"#"}>Satus</Link>
