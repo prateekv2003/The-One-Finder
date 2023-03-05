@@ -102,7 +102,6 @@ const Profile = ({ params }: any) => {
         <div className="w-screen">
             <div className="w-[90%] mx-auto mb-8 mt-6">
                 <div className="max-w-4xl flex items-center h-auto lg:h-[100vh-20%] flex-wrap mx-auto my-32 lg:my-0">
-                    {/Main Col/}
                     <div
                         id="profile"
                         className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0"
@@ -261,7 +260,6 @@ const Profile = ({ params }: any) => {
                             {/* Use https://simpleicons.org/ to find the svg for your preferred product */}
                         </div>
                     </div>
-                    {/Img Col/}
                     <div className="w-full lg:w-2/5">
                         {/* Big profile image for side bar (desktop) */}
                         <img
