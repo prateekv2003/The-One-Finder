@@ -11,11 +11,10 @@ const people = [
   "Caroline Schultz",
   "Mason Heaney",
   "Claudie Smitham",
-  "Emil Schaefer"
+  "Emil Schaefer",
 ];
 function MyListbox() {
-  const [selectedPerson, setSelectedPerson] = useState(people[0])
-
+  const [selectedPerson, setSelectedPerson] = useState(people[0]);
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPersons, setSelectedPersons] = useState([]);
@@ -28,7 +27,7 @@ function MyListbox() {
     if (!isSelected(value)) {
       const selectedPersonsUpdated = [
         ...selectedPersons,
-        people.find((el) => el === value)
+        people.find((el) => el === value),
       ];
       setSelectedPersons(selectedPersonsUpdated);
     } else {
@@ -43,121 +42,106 @@ function MyListbox() {
     setIsOpen(true);
   }
   return (
-    <div className="absolte top-0 bottom-0 right-0 flex items-center justify-center p-12">
-      <div className="w-full max-w-xs mx-auto">
-        <Listbox
-          as="div"
-          className="space-y-1"
-          value={selectedPersons}
-          onChange={(value) => handleSelect(value)}
-          open={isOpen}
+    <div className="absolte top-0 bottom-0 right-0 flex items-center justify-around gap-4 p-12">
+      <div className="flex flex-col items-start gap-2">
+        <label
+          htmlFor="small"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
         >
-          {() => (
-            <>
-              <Listbox.Label className="block text-sm leading-5 font-medium text-gray-700">
-                Assigned to
-              </Listbox.Label>
-              <div className="relative">
-                <span className="inline-block w-full rounded-md shadow-sm">
-                  <Listbox.Button
-                    className="cursor-default relative w-full rounded-md border border-gray-300 bg-white pl-3 pr-10 py-2 text-left focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5"
-                    onClick={() => setIsOpen(!isOpen)}
-                    open={isOpen}
-                  >
-                    <span className="block truncate">
-                      {selectedPersons.length < 1
-                        ? "Select persons"
-                        : `Selected persons (${selectedPersons.length})`}
-                    </span>
-                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-                      <svg
-                        className="h-5 w-5 text-gray-400"
-                        viewBox="0 0 20 20"
-                        fill="none"
-                        stroke="currentColor"
-                      >
-                        <path
-                          d="M7 7l3-3 3 3m0 6l-3 3-3-3"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </Listbox.Button>
-                </span>
-
-                <Transition
-                  unmount={false}
-                  show={isOpen}
-                  leave="transition ease-in duration-100"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                  className="absolute mt-1 w-full rounded-md bg-white shadow-lg"
-                >
-                  <Listbox.Options
-                    static
-                    className="max-h-60 rounded-md py-1 text-base leading-6 shadow-xs overflow-auto focus:outline-none sm:text-sm sm:leading-5"
-                  >
-                    {people.map((person) => {
-                      const selected = isSelected(person);
-                      return (
-                        <Listbox.Option key={person} value={person}>
-                          {({ active }) => (
-                            <div
-                              className={`${
-                                active
-                                  ? "text-white bg-blue-600"
-                                  : "text-gray-900"
-                              } cursor-default select-none relative py-2 pl-8 pr-4`}
-                            >
-                              <span
-                                className={`${
-                                  selected ? "font-semibold" : "font-normal"
-                                } block truncate`}
-                              >
-                                {person}
-                              </span>
-                              {selected && (
-                                <span
-                                  className={`${
-                                    active ? "text-white" : "text-blue-600"
-                                  } absolute inset-y-0 left-0 flex items-center pl-1.5`}
-                                >
-                                  <svg
-                                    className="h-5 w-5"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                  >
-                                    <path
-                                      fillRule="evenodd"
-                                      d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                      clipRule="evenodd"
-                                    />
-                                  </svg>
-                                </span>
-                              )}
-                            </div>
-                          )}
-                        </Listbox.Option>
-                      );
-                    })}
-                  </Listbox.Options>
-                </Transition>
-                <div className="pt-1 text-sm">
-                  {selectedPersons.length > 0 && (
-                    <>Selected persons: {selectedPersons.join(", ")}</>
-                  )}
-                </div>
-              </div>
-            </>
-          )}
-        </Listbox>
+          Who to date?
+        </label>
+        <select
+          id="small"
+          className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected value="M">Male</option>
+          <option value="F">Female</option>
+          <option value="NB">Other</option>
+        </select>
       </div>
+      <div className="flex flex-col items-start gap-2">
+        <label
+          htmlFor="small"
+          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >
+          What to find?
+        </label>
+        <select
+          id="small"
+          className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+          <option selected value="R">Relationship</option>
+          <option value="C">Casual</option>
+          <option value="F">Friendship</option>
+        </select>
+      </div>
+      <div className="flex gap-2">
+        <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+          <input
+            id="bordered-checkbox-1"
+            type="checkbox"
+            value=""
+            name="bordered-checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            htmlFor="bordered-checkbox-1"
+            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Smooker
+          </label>
+        </div>
+        <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+          <input
+            checked
+            id="bordered-checkbox-2"
+            type="checkbox"
+            value=""
+            name="bordered-checkbox"
+            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+          />
+          <label
+            htmlFor="bordered-checkbox-2"
+            className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+          >
+            Drinker
+          </label>
+        </div>
+      </div>
+      {/* <label
+        htmlFor="default"
+        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+      >
+        Default select
+      </label>
+      <select
+        id="default"
+        className="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select>
+      <label
+        htmlFor="large"
+        className="block mb-2 text-base font-medium text-gray-900 dark:text-white"
+      >
+        Large select
+      </label>
+      <select
+        id="large"
+        className="block w-full px-4 py-3 text-base text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      >
+        <option selected>Choose a country</option>
+        <option value="US">United States</option>
+        <option value="CA">Canada</option>
+        <option value="FR">France</option>
+        <option value="DE">Germany</option>
+      </select> */}
     </div>
-  )
+  );
 }
 
-
-export default MyListbox
+export default MyListbox;

@@ -86,7 +86,7 @@ function Advanced() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/v1/rec?userId=640343f1017385e590c1c4b3")
+    fetch("http://localhost:5000/v1/profile/rec?userId=640395ae0c47df0f8c1d339a&who_to_date=F&what_to_find=F&is_habit_drink=N&is_habit_smoke=N")
       .then((res) => res.json())
       .then((data) => {
         data.length = 20;
