@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { userService } = require('../services');
+const { userService, recService } = require('../services');
 
 const createUser = catchAsync(async (req, res) => {
   const user = await userService.createUser(req.body);
@@ -36,7 +36,7 @@ const deleteUser = catchAsync(async (req, res) => {
 
 const getRecommendations = catchAsync(async (req, res) => {
   // console.log(req.query.userId);
-  const users = await userService.getRecommendations('640343f1017385e590c1c4b3');
+  const users = await recService.getRecommendations(req.query.userId);
   res.send(users);
 });
 

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
+const Mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
 
@@ -8,7 +9,6 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      required: true,
       trim: true,
     },
     email: {
@@ -44,6 +44,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isSubscribed: {
+      type: Boolean,
+      default: false,
+    },
     bio: String,
     college: String,
     createdAt: Number,
@@ -71,7 +75,7 @@ const userSchema = mongoose.Schema(
     what_to_find: {
       type: String,
       enum: ['C', 'R', 'NS', 'F', 'CON'],
-      default: 'C',
+      default: 'R',
     },
     who_to_date: {
       type: String,
@@ -80,16 +84,48 @@ const userSchema = mongoose.Schema(
     },
     is_subscribed: Boolean,
     age: Number,
-    likes_received: Number,
-    dislikes_recieved: Number,
-    dislikes_done: Number,
-    likes_done: Number,
-    views: Number,
-    matches: Number,
-    dislikes_by_likes_ratio_recieved: Number,
-    dislikes_by_likes_ratio_done: Number,
-    completion_status: Number,
-    profile_score: Number,
+    liked: [Mongoose.Types.ObjectId],
+    disliked: [Mongoose.Types.ObjectId],
+    likes_received: {
+      type: Number,
+      default: 0,
+    },
+    dislikes_recieved: {
+      type: Number,
+      default: 0,
+    },
+    dislikes_done: {
+      type: Number,
+      default: 0,
+    },
+    likes_done: {
+      type: Number,
+      default: 0,
+    },
+    views: {
+      type: Number,
+      default: 0,
+    },
+    matches: {
+      type: Number,
+      default: 0,
+    },
+    dislikes_by_likes_ratio_recieved: {
+      type: Number,
+      default: 0,
+    },
+    dislikes_by_likes_ratio_done: {
+      type: Number,
+      default: 0,
+    },
+    completion_status: {
+      type: Number,
+      default: 0,
+    },
+    profile_score: {
+      type: Number,
+      default: 50,
+    },
 
     preference: {
       minAge: {
