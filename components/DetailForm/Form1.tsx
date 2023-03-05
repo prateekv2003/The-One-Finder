@@ -82,6 +82,26 @@ const Form1 = (props: Props) => {
                                 htmlFor="full-name"
                                 className="leading-7 text-sm text-gray-600"
                             >
+                                Gender
+                            </label>
+                            <select
+                                id="gender"
+                                name="gender"
+                                className="w-full bg-white rounded border border-gray-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                                onChange={handleChangeForm1}
+                            >
+                                <option></option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Non-Binary</option>
+                            </select>
+                        </div>
+
+                        <div className="relative mb-4">
+                            <label
+                                htmlFor="full-name"
+                                className="leading-7 text-sm text-gray-600"
+                            >
                                 Date Of Birth
                             </label>
                             {/* <div className="flex gap-2">
