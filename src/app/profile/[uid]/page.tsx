@@ -18,6 +18,7 @@ import {
     ModalCloseButton,
     ModalBody,
     ModalFooter,
+    useDisclosure,
 } from "@chakra-ui/react";
 import Capture from "components/Capture";
 import { Button } from "flowbite-react";
@@ -95,14 +96,13 @@ const Profile = ({ params }: any) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleSave = () => {
-        return;
+        // return null;
     };
 
     return (
         <div className="w-screen">
             <div className="w-[90%] mx-auto mb-8 mt-6">
                 <div className="max-w-4xl flex items-center h-auto lg:h-[100vh-20%] flex-wrap mx-auto my-32 lg:my-0">
-                    {/Main Col/}
                     <div
                         id="profile"
                         className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0"
@@ -116,7 +116,7 @@ const Profile = ({ params }: any) => {
                                         user && user.userImage
                                     })`,
                                 }}
-                            />
+                            ></div>
                             <h1 className="text-3xl font-bold pt-8 lg:pt-0 whitespace-nowrap">
                                 {user && user?.name}{" "}
                                 {user && user?.gender && gender[user?.gender]}
@@ -187,7 +187,7 @@ const Profile = ({ params }: any) => {
                                 >
                                     Verify
                                 </button>
-                                <Modal isOpen={onOpen} onClose={onClose}>
+                                {/* <Modal isOpen={onOpen} onClose={onClose}>
                                     <ModalOverlay />
                                     <ModalContent>
                                         <ModalHeader>Modal Title</ModalHeader>
@@ -213,7 +213,7 @@ const Profile = ({ params }: any) => {
                                             </button>
                                         </ModalFooter>
                                     </ModalContent>
-                                </Modal>
+                                </Modal> */}
                             </div>
 
                             <div className="mt-4 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center gap-2">
@@ -261,7 +261,6 @@ const Profile = ({ params }: any) => {
                             {/* Use https://simpleicons.org/ to find the svg for your preferred product */}
                         </div>
                     </div>
-                    {/Img Col/}
                     <div className="w-full lg:w-2/5">
                         {/* Big profile image for side bar (desktop) */}
                         <img
@@ -307,6 +306,3 @@ const Profile = ({ params }: any) => {
 };
 
 export default Profile;
-function useDisclosure(): { isOpen: any; onOpen: any; onClose: any } {
-    throw new Error("Function not implemented.");
-}

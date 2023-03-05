@@ -17,20 +17,18 @@ const AppProvider = ({ children }) => {
     setForm3Data({ ...form3Data, [e.target.name]: e.target.value });
   };
 
-  // this is the final data to be sent to the backend
-  const [formData, setFormData] = useState(...form1Data, {
-    preferences: [...form3Data],
-  });
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    console.log(formData);
-  };
-
   // for Recs.....
   const [whoFor, setWhoFor] = useState("M");
   const [whatFor, setWhatFor] = useState("R");
   const [isDrinker, setIsDrinker] = useState("N");
   const [isSmooker, setIsSmooker] = useState("N");
+  // this is the final data to be sent to the backend
+  const formData = { ...form1Data, preferences: Object.assign({}, form3Data) };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(formData);
+  };
 
   return (
     <AppContext.Provider
