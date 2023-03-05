@@ -17,7 +17,7 @@ const defaultRoutes = [
     route: userRoute,
   },
   {
-    path: '/rec',
+    path: '/profile',
     route: recRoute,
   },
 ];

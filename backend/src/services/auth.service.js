@@ -20,11 +20,7 @@ const loginUserWithEmailAndPassword = async (email, password) => {
 };
 
 const loginUserWithSocials = async (email, social) => {
-  const user = await userService.getUserByEmail(email);
-  if (!user) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, 'User does not exists');
-  }
-  return user;
+  return await userService.getUserByEmail(email);
 };
 
 /**
