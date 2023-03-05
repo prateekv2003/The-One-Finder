@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useMemo, useRef, useEffect } from "react";
 import TinderCard from "react-tinder-card";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
@@ -6,6 +6,10 @@ import { CgUndo } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
 import { AiOutlineStar } from "react-icons/ai";
+import AvatarDropdown from "./AvatarDropdown";
+import FilterForm from "./FilterForm";
+import { useContext } from "react";
+import { AppContext } from "context/AppContext";
 // const db: { name: String; url: String }[] = [
 //   {
 //     name: "Richard Hendricks",
@@ -29,12 +33,12 @@ import { AiOutlineStar } from "react-icons/ai";
 //   },
 // ];
 
-
 function Advanced() {
   const [lastDirection, setLastDirection] = useState();
-  const [recs, setRecs] = useState([])
-  const [superLike, setSuperLike] = useState(false)
+  const [recs, setRecs] = useState([]);
+  const [superLike, setSuperLike] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(recs.length - 1);
+  const { whoFor, whatFor, isDrinker, isSmooker } = useContext(AppContext);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
@@ -84,40 +88,54 @@ function Advanced() {
     await childRefs[newIndex].current.restoreCard();
   };
 
-
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function fetchRecs() {
+    fetch(
+      `http://localhost:5000/v1/profile/rec?userId=640395ae0c47df0f8c1d339a&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
+    )
+      .then((res) => res.json())
+      .then((data) => { 
+        setRecs(data);
+        console.log(data);
+      });
+  }
   useEffect(() => {
-    fetch("http://localhost:5000/v1/rec?userId=640343f1017385e590c1c4b3")
-    .then((res) => res.json())
-    .then((data) => {
-      data.length=20
-      setRecs(data)
-      console.log(data)
-    })
-  }, [])
-  
+    fetchRecs();
+  }, [fetchRecs]);
 
   return (
-    <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen">
+    <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen relative">
+      <div className="absolute top-4 right-4">{/* <AvatarDropdown /> */}</div>
       <div className="md:w-[30%] border-r-2">chat section</div>
-      <div className="md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
+      <div className="relative md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
+        <FilterForm onApplyClick={() => fetchRecs()} />
+
         <div className="cardContainer">
-          {recs && Array.isArray(recs) && recs.map((character, index) => (
-            <TinderCard
-              ref={childRefs[index]}
-              className="swipe"
-              key={character.name}
-              onSwipe={(dir) => swiped(dir, character.name, index)}
-              onCardLeftScreen={() => outOfFrame(character.name, index)}
-              preventSwipe={["up", "down"]}
-            >
-              <div
-                style={{ backgroundImage: `url(https://xsgames.co/randomusers/avatar.php?g=${character.gender=='M'?'male':'female'})`}}
-                className="card"
+          {recs &&
+            Array.isArray(recs) &&
+            recs.map((character, index) => (
+              <TinderCard
+                ref={childRefs[index]}
+                className="swipe"
+                key={character.name}
+                onSwipe={(dir) => swiped(dir, character.name, index)}
+                onCardLeftScreen={() => outOfFrame(character.name, index)}
+                preventSwipe={["up", "down"]}
               >
-                <Link href={`/profile/${character.id}`} className="card_name">{character.name}</Link>
-              </div>
-            </TinderCard>
-          ))}
+                <div
+                  style={{
+                    backgroundImage: `url(https://xsgames.co/randomusers/avatar.php?g=${
+                      character.gender == "M" ? "male" : "female"
+                    })`,
+                  }}
+                  className="card"
+                >
+                  <Link href={`/profile/${character.id}`} className="card_name">
+                    {character.name}
+                  </Link>
+                </div>
+              </TinderCard>
+            ))}
         </div>
         <div className="flex space-x-4">
           <button
@@ -143,7 +161,11 @@ function Advanced() {
           </button>
           <button
             // style={{ backgroundColor: !canSwipe && "#c3c4d3" }}
-          className={`${superLike?"bg-fuchsia-700 text-white  font-medium":"bg-white border text-fuchsia-700 border-fuchsia-700"} rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-fuchsia-500 dark:text-fuchsia-500 dark:hover:text-white`}
+            className={`${
+              superLike
+                ? "bg-fuchsia-700 text-white  font-medium"
+                : "bg-white border text-fuchsia-700 border-fuchsia-700"
+            } rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-fuchsia-500 dark:text-fuchsia-500 dark:hover:text-white`}
             onClick={() => setSuperLike(!superLike)}
           >
             <AiOutlineStar className="w-5 h-5" />
