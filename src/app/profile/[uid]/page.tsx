@@ -34,10 +34,36 @@ const Profile = ({ params }: any) => {
       </>
     ),
   };
+  const maleImages = new Array(
+    "https://images.unsplash.com/photo-1518809595274-1471d16319b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1597810743069-cf40e2452aa9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1571868200937-54dd464381cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTN8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1474293507615-951863a0f942?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjJ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1621353269062-6aa0165576f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MzZ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1549045337-967927d923c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTd8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1597204081767-4c14a6b7cbec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NjF8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
+  );
+
+  const femaleImage = new Array(
+    "https://images.unsplash.com/photo-1622496030981-e8377ce1ecdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1622495966027-e0173192c728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mnx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1622495966087-4b72dd849db7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3x6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1578078911787-368f3ec8545f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3x6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1546961342-ea5f71b193f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1483381616603-8dde934da56f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjN8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+    "https://images.unsplash.com/photo-1533638842865-579068d17afe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
+  );
   function fetchUser(id: string) {
     fetch(`http://localhost:5000/v1/users/${id}`)
       .then((res) => res.json())
       .then((data) => {
+        if (data.userImage) {
+          if (data.gender === "M") {
+            data.userImage = maleImages[data.user_id % maleImages.length];
+          } else {
+            data.userImage = femaleImage[data.user_id % femaleImage.length];
+          }
+        }
         setUser(data);
         console.log("hi", data);
       });
@@ -67,7 +93,7 @@ const Profile = ({ params }: any) => {
               <div
                 className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
                 style={{
-                  backgroundImage: `url(${Demo.src})`,
+                  backgroundImage: `url(${user && user.userImage})`,
                 }}
               />
               <h1 className="text-3xl font-bold pt-8 lg:pt-0 whitespace-nowrap">
@@ -116,7 +142,12 @@ const Profile = ({ params }: any) => {
                       "″"}
                 </p>
               </div>
-              <p className="pt-8 text-sm">{user && user?.bio && user?.bio!=="NAN" && `❝${user && user?.bio}❞`}</p>
+              <p className="pt-8 text-sm">
+                {user &&
+                  user?.bio &&
+                  user?.bio !== "NAN" &&
+                  `❝${user && user?.bio}❞`}
+              </p>
               <div className="pt-8 pb-2">
                 <button className="bg-purple-700 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full">
                   Message
@@ -166,37 +197,39 @@ const Profile = ({ params }: any) => {
           <div className="w-full lg:w-2/5">
             {/* Big profile image for side bar (desktop) */}
             <img
-              src={Veer.src}
+              src={user && user.userImage}
               className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
             />
             {/* Image from: http://unsplash.com/photos/MP0IUfwrn0A */}
           </div>
         </div>
 
-        {user?.images && Array.isArray(user?.images) && user?.images.map((obj, id) => {
-          return (
-            <div key={id} className="grid m-6 md:grid-cols-3 gap-4">
-              <div className="">
-                <img src={Demo.src} alt="" />
+        {user?.images &&
+          Array.isArray(user?.images) &&
+          user?.images.map((obj, id) => {
+            return (
+              <div key={id} className="grid m-6 md:grid-cols-3 gap-4">
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
+                <div className="">
+                  <img src={Demo.src} alt="" />
+                </div>
               </div>
-              <div className="">
-                <img src={Demo.src} alt="" />
-              </div>
-              <div className="">
-                <img src={Demo.src} alt="" />
-              </div>
-              <div className="">
-                <img src={Demo.src} alt="" />
-              </div>
-              <div className="">
-                <img src={Demo.src} alt="" />
-              </div>
-              <div className="">
-                <img src={Demo.src} alt="" />
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );

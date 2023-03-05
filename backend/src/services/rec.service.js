@@ -34,7 +34,7 @@ const getRecommendations = async (userId, who_to_date, what_to_find = 'R', is_ha
       { what_to_find: what_to_find },
     ],
     _id: { $nin: [...user.liked, ...user.disliked, user.id] },
-  });
+  }).limit(20);
   let l = [...new Set([...rec, ...latest])];
   l = shuffleArray(l);
   return l;
