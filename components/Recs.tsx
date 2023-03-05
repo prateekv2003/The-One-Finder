@@ -33,7 +33,11 @@ import { AppContext } from "context/AppContext";
 //   },
 // ];
 
-function Advanced() {
+type Props = {
+  userId: String;
+};
+
+function Advanced({ userId }: Props) {
   const [lastDirection, setLastDirection] = useState();
   const [recs, setRecs] = useState([]);
   const [superLike, setSuperLike] = useState(false);
@@ -62,6 +66,15 @@ function Advanced() {
   // set last direction and decrease current index
   const swiped = (direction: any, nameToDelete: String, index: number) => {
     setLastDirection(direction);
+    fetch(`${process.env.BASE_URL}/v1/profile/swipe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId1: userId,
+        userId2: recs[index].id,
+        liked: direction === "right",
+      }),
+    });
     updateCurrentIndex(index - 1);
   };
 
@@ -111,7 +124,7 @@ function Advanced() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function fetchRecs() {
     fetch(
-      `http://localhost:5000/v1/profile/rec?userId=640395ae0c47df0f8c1d339a&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
+      `http://localhost:5000/v1/profile/rec?userId=${userId}&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
     )
       .then((res) => res.json())
       .then((data) => {
