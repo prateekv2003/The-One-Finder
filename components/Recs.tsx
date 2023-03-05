@@ -105,10 +105,9 @@ function Advanced() {
   }, []);
 
   return (
-    <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen relative">
+    <div className="overflow-x-hidden h-screen mx-auto flex flex-col-reverse md:flex-row items-center w-screen relative">
       <div className="absolute top-4 right-4">{/* <AvatarDropdown /> */}</div>
-      <div className="md:w-[30%] border-r-2">chat section</div>
-      <div className="relative md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
+      <div className="relative h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
         <FilterForm onApplyClick={() => fetchRecs()} />
 
         <div className="cardContainer">
