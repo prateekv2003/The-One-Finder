@@ -17,6 +17,13 @@ const getRecommendations = async (userId, who_to_date, what_to_find = 'R', is_ha
     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
   }
   console.log(user);
+  const latest = await User.find({
+    gender: who_to_date,
+    _id: { $nin: [...user.liked, ...user.disliked, user.id] },
+  })
+    .sort({ createdAt: -1 })
+    .limit(30);
+  console.log(latest.length);
   const rec = await User.find({
     gender: who_to_date,
     profile_score: { $gte: user.profile_score - 20, $lte: user.profile_score + 20 },
@@ -27,10 +34,15 @@ const getRecommendations = async (userId, who_to_date, what_to_find = 'R', is_ha
       { what_to_find: what_to_find },
     ],
     _id: { $nin: [...user.liked, ...user.disliked, user.id] },
-  });
-  // const filtered = rec.filter((ele) => ele.gender === user.who_to_find);
-  return rec;
+  }).limit(20);
+  let l = [...new Set([...rec, ...latest])];
+  l = shuffleArray(l);
+  return l;
 };
+
+function shuffleArray(array) {
+  return array.sort(() => Math.random() - 0.5);
+}
 
 const likeSwipe = async (userId1, userId2, isLiked) => {
   console.log(userId1, userId2);
