@@ -7,15 +7,8 @@ import { useContext } from "react";
 import { AppContext } from "context/AppContext";
 type Props = {};
 const Form3 = (props: Props) => {
-    const {
-        context,
-        setContext,
-        step,
-        handleSubmitFile,
-        handleChangeForm3,
-        form3Data,
-        setForm3Data,
-    } = useContext(AppContext);
+    const { context, step, handleChangeForm3, form3Data, setForm3Data } =
+        useContext(AppContext);
     return (
         <section className="text-gray-600 body-font">
             <div className="container px-5 py-4 mx-auto flex flex-wrap items-center">
@@ -33,67 +26,25 @@ const Form3 = (props: Props) => {
                     <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
                         What you lookin' for?
                     </h2>
-                    <div className="relative mb-4">
-                        <label
-                            htmlFor="full-name"
-                            className="leading-7 text-sm text-gray-600"
-                        >
-                            Full Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            className="w-full bg-white rounded border border-gray-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                            onChange={handleChangeForm3}
-                        />
-                    </div>
-                    <div className="relative mb-4">
-                        <label
-                            htmlFor="bio"
-                            className="leading-7 text-sm text-gray-600"
-                        >
-                            Bio
-                        </label>
-                        <textarea
-                            id="bio"
-                            name="bio"
-                            rows={3}
-                            className="w-full bg-white rounded border border-gray-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                            onChange={handleChangeForm3}
-                        />
-                    </div>
 
                     <div className="relative mb-4">
                         <label
                             htmlFor="full-name"
                             className="leading-7 text-sm text-gray-600"
                         >
-                            Date Of Birth
+                            Gender
                         </label>
-                        <input
-                            type="date"
-                            id="dob"
-                            name="dob"
+                        <select
+                            id="gender"
+                            name="gender"
                             className="w-full bg-white rounded border border-gray-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                             onChange={handleChangeForm3}
-                        />
-                    </div>
-
-                    <div className="relative mb-4">
-                        <label
-                            htmlFor="phone"
-                            className="leading-7 text-sm text-gray-600"
                         >
-                            Phone Number
-                        </label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            name="mobile"
-                            className="w-full bg-white rounded border border-gray-300 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                            onChange={handleChangeForm3}
-                        />
+                            <option></option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Non-Binary</option>
+                        </select>
                     </div>
 
                     <div className="flex -mx-3">

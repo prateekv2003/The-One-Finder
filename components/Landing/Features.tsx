@@ -119,7 +119,7 @@ const Features = () => {
                         </div>
                     </div>
                     <button className="flex mx-auto mt-16 text-white bg-fuchsia-700 border-0 py-2 px-8 focus:outline-none hover:bg-fuchsia-600 rounded text-lg">
-                        Learn More
+                        <a href="#testimonials">Learn More</a>
                     </button>
                 </div>
             </section>
