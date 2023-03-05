@@ -19,7 +19,9 @@ const AppProvider = ({ children }) => {
     };
 
     // this is the final data to be sent to the backend
-    const [formData, setFormData] = useState(...form1Data, { "preferences": [...form3Data] });
+    const formData = { ...form1Data, preferences: Object.assign({}, form3Data) };
+
+
     const handleSubmitForm = (e) => {
         e.preventDefault();
         console.log(formData);

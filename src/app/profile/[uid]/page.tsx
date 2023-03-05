@@ -18,6 +18,7 @@ import {
     ModalCloseButton,
     ModalBody,
     ModalFooter,
+    useDisclosure,
 } from "@chakra-ui/react";
 import Capture from "components/Capture";
 import { Button } from "flowbite-react";
@@ -95,7 +96,7 @@ const Profile = ({ params }: any) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleSave = () => {
-        return;
+        // return null;
     };
 
     return (
@@ -115,7 +116,7 @@ const Profile = ({ params }: any) => {
                                         user && user.userImage
                                     })`,
                                 }}
-                            />
+                            ></div>
                             <h1 className="text-3xl font-bold pt-8 lg:pt-0 whitespace-nowrap">
                                 {user && user?.name}{" "}
                                 {user && user?.gender && gender[user?.gender]}
@@ -186,7 +187,7 @@ const Profile = ({ params }: any) => {
                                 >
                                     Verify
                                 </button>
-                                <Modal isOpen={onOpen} onClose={onClose}>
+                                {/* <Modal isOpen={onOpen} onClose={onClose}>
                                     <ModalOverlay />
                                     <ModalContent>
                                         <ModalHeader>Modal Title</ModalHeader>
@@ -212,7 +213,7 @@ const Profile = ({ params }: any) => {
                                             </button>
                                         </ModalFooter>
                                     </ModalContent>
-                                </Modal>
+                                </Modal> */}
                             </div>
 
                             <div className="mt-4 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center gap-2">
@@ -305,6 +306,3 @@ const Profile = ({ params }: any) => {
 };
 
 export default Profile;
-function useDisclosure(): { isOpen: any; onOpen: any; onClose: any } {
-    throw new Error("Function not implemented.");
-}
