@@ -4,10 +4,15 @@ import { AppContext } from "context/AppContext";
 import Form1 from "./Form1";
 import Form2 from "./Form2";
 import Form3 from "./Form3";
+import {storage} from "../../firebase"
 
 type Props = {};
 const Forms = (props: Props) => {
     const { context, step, setStep, handleSubmitForm } = useContext(AppContext);
+
+    const handleInputState = (name, value) => {
+		setData((prev) => ({ ...prev, [name]: value }));
+	};
 
     return (
         <div>
@@ -17,7 +22,7 @@ const Forms = (props: Props) => {
                         {step === 1 ? (
                             <Form1 />
                         ) : step === 2 ? (
-                            <Form2 />
+                            <Form2 handleInputState={handleInputState}/>
                         ) : (
                             <Form3 />
                         )}

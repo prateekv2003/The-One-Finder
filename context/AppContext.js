@@ -23,8 +23,15 @@ const AppProvider = ({ children }) => {
         console.log(form1Data);
     };
 
+
+    // for Recs.....
+    const [whoFor, setWhoFor] = useState("M")
+    const [whatFor, setWhatFor] = useState("R")
+    const [isDrinker, setIsDrinker] = useState('N')
+    const [isSmooker, setIsSmooker] = useState('N')
+
     return (
-        <AppContext.Provider value={{ data, setData, step, setStep, form1Data, setForm1Data, handleChangeForm1, form3Data, setForm3Data, handleChangeForm3, handleSubmitForm }}>
+        <AppContext.Provider value={{ data, setData, step, setStep, form1Data, setForm1Data, handleChangeForm1, form3Data, setForm3Data, handleChangeForm3, handleSubmitForm, whoFor, setWhoFor, whatFor, setWhatFor, isDrinker, setIsDrinker, isSmooker, setIsSmooker}}>
             {children}
         </AppContext.Provider>
     )

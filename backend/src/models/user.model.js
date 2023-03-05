@@ -40,6 +40,10 @@ const userSchema = mongoose.Schema(
       enum: roles,
       default: 'user',
     },
+    userImage: {
+      type: String,
+      default: '',
+    },
     isVerified: {
       type: Boolean,
       default: false,

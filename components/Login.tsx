@@ -4,10 +4,9 @@ import { ClientSafeProvider, signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler, LiteralUnion } from "react-hook-form";
-import { BsFacebook } from "react-icons/bs";
+import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import LoginImg from "../public/Dating.gif";
-import { name } from "../static";
+import LoginImg from "../public/logg.jpg";
 type Props = {
     providers: Record<
         LiteralUnion<BuiltInProviderType, string>,
@@ -42,13 +41,13 @@ const Login = ({ providers }: Props) => {
             <div className=" flex rounded-2xl space-x-6 pt-10 w-full px-8 md:px-20 items-center">
                 <div className="md:w-1/2 px-2 md:px-2 ">
                     <h1 className="text-4xl antialiased font-bold dark:text-white">
-                        Welcome to {name}
+                        Welcome to MatchMaster
                     </h1>
-                    <h2 className="font-bold text-2xl text-fuchsia  -600 dark:text-[#e5ff12]">
+                    <h2 className="font-bold text-2xl text-purple-600 dark:text-[#e5ff12]">
                         Fast Login
                     </h2>
-                    <p className="text-xs mt-4 text-fuchsia-600 dark:text-white">
-                        Easy login with Google, Facebook, Twitter and LinkedIn
+                    <p className="text-xs mt-4 text-[#002D74] dark:text-white">
+                        Easy login with Google, Github, Twitter and LinkedIn
                     </p>
 
                     <form
@@ -78,9 +77,12 @@ const Login = ({ providers }: Props) => {
                                 {errors?.password && errors.password.message}
                             </small>
                         </div>
-                        <button className="w-full md:w-fit text-white bg-fuchsia  -600 hover:bg-fuchsia -700 focus:ring-4 focus:outline-none focus:ring-fuchsia  -300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-fuchsia -600 dark:hover:bg-fuchsia -700 dark:focus:ring-fuchsia -800">
+                        <Link
+                            href="/details"
+                            className="w-full md:w-fit text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+                        >
                             Login
-                        </button>
+                        </Link>
                     </form>
 
                     <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
@@ -96,10 +98,10 @@ const Login = ({ providers }: Props) => {
                                         key={id}
                                         onClick={() =>
                                             signIn(provider.id, {
-                                                callbackUrl: "/",
+                                                callbackUrl: "/details",
                                             })
                                         }
-                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-600"
+                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
                                     >
                                         <FcGoogle className="text-2xl" />
                                         <div className="ml-2  font-semibold">
@@ -111,14 +113,14 @@ const Login = ({ providers }: Props) => {
                                         key={id}
                                         onClick={() =>
                                             signIn(provider.id, {
-                                                callbackUrl: "/",
+                                                callbackUrl: "/details",
                                             })
                                         }
-                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-600"
+                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
                                     >
-                                        <BsFacebook className="text-xl text-blue-500" />
+                                        <BsGithub className="text-xl" />
                                         <div className="ml-2 font-semibold">
-                                            Continue With Facebook
+                                            Continue With Github
                                         </div>
                                     </button>
                                 )
@@ -129,7 +131,7 @@ const Login = ({ providers }: Props) => {
                         <p>Don't have an account?</p>
                         <Link
                             href="/register"
-                            className="font-medium text-fuchsia-600 hover:underline dark:text-fuchsia-500"
+                            className="font-medium text-purple-600 hover:underline dark:text-purple-500"
                         >
                             Register
                         </Link>

@@ -10,49 +10,73 @@ import {
     BsGenderFemale,
     BsGenderMale,
 } from "react-icons/bs";
-
-import Capture from "../../../../components/Capture";
 import {
-    Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
-    ModalFooter,
-    ModalBody,
     ModalCloseButton,
-    useDisclosure,
-    Button,
+    ModalBody,
+    ModalFooter,
 } from "@chakra-ui/react";
-
+import Capture from "components/Capture";
+import { Button } from "flowbite-react";
+import { Modal } from "stream-chat-react";
 type Props = {};
 
 const Profile = ({ params }: any) => {
     const [user, setUser] = useState({});
-    const { isOpen, onOpen, onClose } = useDisclosure();
     const gender = {
         M: (
             <>
-                <BsGenderMale className="text-2xl inline text-purple-600" />{" "}
+                <BsGenderMale className="text-2xl inline text-fuchsia-600" />{" "}
                 <span className="text-sm text-gray-600">M</span>
             </>
         ),
         F: (
             <>
-                <BsGenderFemale className="text-2xl inline text-purple-600" />{" "}
+                <BsGenderFemale className="text-2xl inline text-fuchsia-600" />{" "}
                 <span className="text-sm text-gray-600">F</span>
             </>
         ),
         NB: (
             <>
-                <BsGenderAmbiguous className="text-2xl inline text-purple-600" />{" "}
+                <BsGenderAmbiguous className="text-2xl inline text-fuchsia-600" />{" "}
                 <span className="text-sm text-gray-600">NB</span>
             </>
         ),
     };
+    const maleImages = new Array(
+        "https://images.unsplash.com/photo-1518809595274-1471d16319b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NHx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1597810743069-cf40e2452aa9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTJ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1571868200937-54dd464381cf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTN8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1474293507615-951863a0f942?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjJ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1621353269062-6aa0165576f2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MzZ8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1549045337-967927d923c0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTd8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1597204081767-4c14a6b7cbec?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NjF8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
+    );
+
+    const femaleImage = new Array(
+        "https://images.unsplash.com/photo-1622496030981-e8377ce1ecdd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1622495966027-e0173192c728?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mnx6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1622495966087-4b72dd849db7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8M3x6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1578078911787-368f3ec8545f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8N3x6SEpYT0VsTXRld3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1546961342-ea5f71b193f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTB8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1483381616603-8dde934da56f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjN8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60",
+        "https://images.unsplash.com/photo-1533638842865-579068d17afe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
+    );
     function fetchUser(id: string) {
         fetch(`http://localhost:5000/v1/users/${id}`)
             .then((res) => res.json())
             .then((data) => {
+                if (data.userImage) {
+                    if (data.gender === "M") {
+                        data.userImage =
+                            maleImages[data.user_id % maleImages.length];
+                    } else {
+                        data.userImage =
+                            femaleImage[data.user_id % femaleImage.length];
+                    }
+                }
                 setUser(data);
                 console.log("hi", data);
             });
@@ -68,23 +92,11 @@ const Profile = ({ params }: any) => {
         inches: inches % 12,
     });
 
-    const [source, setSource] = useState("");
-
-    const handleCapture = (target: any) => {
-        if (target.files) {
-            if (target.files.length !== 0) {
-                const file = target.files[0];
-                const newUrl = URL.createObjectURL(file);
-                setSource(newUrl);
-            }
-        }
-    };
-
     return (
         <div className="w-screen">
             <div className="w-[90%] mx-auto mb-8 mt-6">
                 <div className="max-w-4xl flex items-center h-auto lg:h-[100vh-20%] flex-wrap mx-auto my-32 lg:my-0">
-                    {/*Main Col*/}
+                    {/Main Col/}
                     <div
                         id="profile"
                         className="w-full lg:w-3/5 rounded-lg lg:rounded-l-lg lg:rounded-r-none shadow-2xl bg-white opacity-75 mx-6 lg:mx-0"
@@ -94,7 +106,9 @@ const Profile = ({ params }: any) => {
                             <div
                                 className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center"
                                 style={{
-                                    backgroundImage: `url(${Demo.src})`,
+                                    backgroundImage: `url(${
+                                        user && user.userImage
+                                    })`,
                                 }}
                             />
                             <h1 className="text-3xl font-bold pt-8 lg:pt-0 whitespace-nowrap">
@@ -104,11 +118,11 @@ const Profile = ({ params }: any) => {
                             <p className="text-xs pt-8 lg:pt-0">
                                 {user && user?.email}
                             </p>
-                            <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-purple-500 opacity-25" />
+                            <div className="mx-auto lg:mx-0 w-4/5 pt-3 border-b-2 border-fuchsia-500 opacity-25" />
 
                             <p className="text-base font-bold flex items-center justify-center lg:justify-start">
                                 <svg
-                                    className="h-4 fill-current text-purple-700 pr-4"
+                                    className="h-4 fill-current text-fuchsia-700 pr-4"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
                                 >
@@ -118,7 +132,7 @@ const Profile = ({ params }: any) => {
                             </p>
                             <p className="pt-2 text-gray-600 text-xs lg:text-sm flex items-center justify-center lg:justify-start">
                                 <svg
-                                    className="h-4 fill-current text-purple-700 pr-4"
+                                    className="h-4 fill-current text-fuchsia-700 pr-4"
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 20 20"
                                 >
@@ -157,17 +171,16 @@ const Profile = ({ params }: any) => {
                                     user?.bio !== "NAN" &&
                                     `❝${user && user?.bio}❞`}
                             </p>
-                            <div className="pt-8 pb-2 flex items-center gap-4">
-                                <button className="bg-purple-700 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full">
+                            <div className="pt-8 pb-2">
+                                <button className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full">
                                     Message
                                 </button>
                                 <button
-                                    className="bg-purple-700 hover:bg-purple-900 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={onOpen}
+                                    className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full"
+                                    onClick={isOpen}
                                 >
                                     Verify
                                 </button>
-
                                 <Modal isOpen={isOpen} onClose={onClose}>
                                     <ModalOverlay />
                                     <ModalContent>
@@ -208,12 +221,12 @@ const Profile = ({ params }: any) => {
                                 {user &&
                                     user?.is_habit_smoke &&
                                     user?.is_habit_smoke != "N" && (
-                                        <MdOutlineSmokingRooms className="inline-flex items-center justify-center w-8 h-8 p-1 mr-2 text-purple-700 border border-purple-700 transition-colors duration-150 bg-purple-200 rounded-full focus:shadow-outline hover:bg-purple-700 hover:text-purple-200" />
+                                        <MdOutlineSmokingRooms className="inline-flex items-center justify-center w-8 h-8 p-1 mr-2 text-fuchsia-700 border border-fuchsia-700 transition-colors duration-150 bg-fuchsia-200 rounded-full focus:shadow-outline hover:bg-fuchsia-700 hover:text-fuchsia-200" />
                                     )}
                                 {user &&
                                     user?.is_habit_drink &&
                                     user?.is_habit_drink != "N" && (
-                                        <GiWineGlass className="inline-flex items-center justify-center w-8 h-8 p-1 mr-2 text-purple-700 border border-purple-700 transition-colors duration-150 bg-purple-200 rounded-full focus:shadow-outline hover:bg-purple-700 hover:text-purple-200" />
+                                        <GiWineGlass className="inline-flex items-center justify-center w-8 h-8 p-1 mr-2 text-fuchsia-700 border border-fuchsia-700 transition-colors duration-150 bg-fuchsia-200 rounded-full focus:shadow-outline hover:bg-fuchsia-700 hover:text-fuchsia-200" />
                                     )}
                             </div>
                             <div className="mt-4 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center gap-2">
@@ -228,7 +241,7 @@ const Profile = ({ params }: any) => {
                                         return (
                                             <div
                                                 key={obj}
-                                                className="flex justify-center items-center font-medium py-1.5 px-2.5 bg-white rounded-full text-purple-700 bg-purple-200 border border-purple-700 hover:text-white hover:bg-purple-700"
+                                                className="flex justify-center items-center font-medium py-1.5 px-2.5 bg-white rounded-full text-fuchsia-700 bg-fuchsia-200 border border-fuchsia-700 hover:text-white hover:bg-fuchsia-700"
                                             >
                                                 <div className="text-base font-normal leading-none max-w-full flex-initial">
                                                     {obj}
@@ -240,11 +253,11 @@ const Profile = ({ params }: any) => {
                             {/* Use https://simpleicons.org/ to find the svg for your preferred product */}
                         </div>
                     </div>
-                    {/*Img Col*/}
+                    {/Img Col/}
                     <div className="w-full lg:w-2/5">
                         {/* Big profile image for side bar (desktop) */}
                         <img
-                            src={Veer.src}
+                            src={user && user.userImage}
                             className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
                         />
                         {/* Image from: http://unsplash.com/photos/MP0IUfwrn0A */}

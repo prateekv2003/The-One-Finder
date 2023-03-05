@@ -4,10 +4,9 @@ import { ClientSafeProvider, signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler, LiteralUnion } from "react-hook-form";
-import { BsFacebook } from "react-icons/bs";
+import { BsGithub } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import RegisterImage from "../public/cta2.gif";
-import { name } from "../static";
 type Props = {
     providers: Record<
         LiteralUnion<BuiltInProviderType, string>,
@@ -42,13 +41,13 @@ const Register = ({ providers }: Props) => {
             <div className=" flex rounded-2xl pt-10 w-full px-8 md:px-20 items-center">
                 <div className="md:w-1/2 px-2 md:px-2 ">
                     <h1 className="text-4xl antialiased font-bold dark:text-white">
-                        Welcome to {name}
+                        Welcome to Reflections
                     </h1>
                     <h2 className="font-bold text-2xl text-purple-600 dark:text-[#e5ff12]">
                         Fast Register
                     </h2>
                     <p className="text-xs mt-4 text-[#002D74] dark:text-white">
-                        Easy login with Google, Facebook, Twitter and LinkedIn
+                        Easy login with Google, Github, Twitter and LinkedIn
                     </p>
 
                     <form className="space-y-4 md:space-y-6" action="#">
@@ -125,12 +124,13 @@ const Register = ({ providers }: Props) => {
                                 </label>
                             </div>
                         </div>
-                        <button
+                        <Link
+                            href="/details"
                             type="submit"
                             className="w-full md:w-fit text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
                         >
                             Create an account
-                        </button>
+                        </Link>
                         <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                             Already have an account?{" "}
                             <Link
@@ -155,7 +155,7 @@ const Register = ({ providers }: Props) => {
                                         key={id}
                                         onClick={() =>
                                             signIn(provider.id, {
-                                                callbackUrl: "/",
+                                                callbackUrl: "/details",
                                             })
                                         }
                                         className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
@@ -170,14 +170,14 @@ const Register = ({ providers }: Props) => {
                                         key={id}
                                         onClick={() =>
                                             signIn(provider.id, {
-                                                callbackUrl: "/",
+                                                callbackUrl: "/details",
                                             })
                                         }
                                         className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
                                     >
-                                        <BsFacebook className="text-xl" />
+                                        <BsGithub className="text-xl" />
                                         <div className="ml-2 font-semibold">
-                                            Continue With Facebook
+                                            Continue With Github
                                         </div>
                                     </button>
                                 )
