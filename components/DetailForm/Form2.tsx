@@ -25,15 +25,16 @@ const Form2 = ({ handleInputState }: any) => {
       };
       reader.readAsDataURL(file);
     }
-    setSelectedFile(...selectedFile, file);
   };
 
   const handleSubmitFile = () => {
     // TODO: Handle file upload and processing using the selected file
     selectedFile.map((image) => {
-      const fileName = new Date().getTime() + image.name;
+      const fileName = "omkar";
       const storageRef = ref(storage, `/images/${fileName}`);
-      const uploadTask = uploadBytesResumable(storageRef, image);
+      const uploadTask = uploadBytesResumable(storageRef, image, {
+        contentType: "image/*",
+      });
       uploadTask.on(
         "state_changed",
         (snapshot) => {

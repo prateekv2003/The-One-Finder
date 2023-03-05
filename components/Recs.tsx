@@ -37,7 +37,9 @@ type Props = {
   userId: String;
 };
 
-function Advanced({ userId }: Props) {
+function Advanced() {
+  let userId = localStorage.getItem("userId");
+  if (!userId) userId = "64043875030b114f0cea8db9";
   const [lastDirection, setLastDirection] = useState();
   const [recs, setRecs] = useState([]);
   const [superLike, setSuperLike] = useState(false);

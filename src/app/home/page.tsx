@@ -11,7 +11,7 @@ export default async function Home(props: Props) {
 
   return (
     <div className="w-screen h-screen flex items-center justify-center">
-      <Recs userId={session?.uid ?? ""} />
+      <Recs />
     </div>
   );
 }
