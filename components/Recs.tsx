@@ -95,13 +95,14 @@ function Advanced() {
     )
       .then((res) => res.json())
       .then((data) => { 
+        data.length=20
         setRecs(data);
         console.log(data);
       });
   }
   useEffect(() => {
     fetchRecs();
-  }, [fetchRecs]);
+  }, []);
 
   return (
     <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen relative">
