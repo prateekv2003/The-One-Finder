@@ -4,9 +4,9 @@ import { ClientSafeProvider, signIn } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 import { useForm, SubmitHandler, LiteralUnion } from "react-hook-form";
-import { BsGithub } from "react-icons/bs";
+import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import LoginImg from "../public/logg.jpg";
+import LoginImg from "../public/Dating.gif";
 type Props = {
     providers: Record<
         LiteralUnion<BuiltInProviderType, string>,
@@ -43,11 +43,11 @@ const Login = ({ providers }: Props) => {
                     <h1 className="text-4xl antialiased font-bold dark:text-white">
                         Welcome to MatchMaster
                     </h1>
-                    <h2 className="font-bold text-2xl text-purple-600 dark:text-[#e5ff12]">
+                    <h2 className="font-bold text-2xl text-fuchsia-600 dark:text-[#e5ff12]">
                         Fast Login
                     </h2>
-                    <p className="text-xs mt-4 text-[#002D74] dark:text-white">
-                        Easy login with Google, Github, Twitter and LinkedIn
+                    <p className="text-xs mt-4 text-fuchsia-700 dark:text-white">
+                        Easy login with Google, Facebook, Twitter and LinkedIn
                     </p>
 
                     <form
@@ -101,7 +101,7 @@ const Login = ({ providers }: Props) => {
                                                 callbackUrl: "/details",
                                             })
                                         }
-                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
+                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-700"
                                     >
                                         <FcGoogle className="text-2xl" />
                                         <div className="ml-2  font-semibold">
@@ -116,11 +116,11 @@ const Login = ({ providers }: Props) => {
                                                 callbackUrl: "/details",
                                             })
                                         }
-                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
+                                        className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-700"
                                     >
-                                        <BsGithub className="text-xl" />
+                                        <BsFacebook className="text-xl text-blue-500" />
                                         <div className="ml-2 font-semibold">
-                                            Continue With Github
+                                            Continue With Facebook
                                         </div>
                                     </button>
                                 )
@@ -131,7 +131,7 @@ const Login = ({ providers }: Props) => {
                         <p>Don't have an account?</p>
                         <Link
                             href="/register"
-                            className="font-medium text-purple-600 hover:underline dark:text-purple-500"
+                            className="font-medium text-fuchsia-600 hover:underline dark:text-fuchsia-500"
                         >
                             Register
                         </Link>
