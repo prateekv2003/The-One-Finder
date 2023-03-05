@@ -11,6 +11,7 @@ import {
     BsGenderMale,
 } from "react-icons/bs";
 import {
+    Modal,
     ModalOverlay,
     ModalContent,
     ModalHeader,
@@ -20,7 +21,6 @@ import {
 } from "@chakra-ui/react";
 import Capture from "components/Capture";
 import { Button } from "flowbite-react";
-import { Modal } from "stream-chat-react";
 type Props = {};
 
 const Profile = ({ params }: any) => {
@@ -91,6 +91,12 @@ const Profile = ({ params }: any) => {
         feet: Math.floor(inches / 12),
         inches: inches % 12,
     });
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const handleSave = () => {
+        return;
+    };
 
     return (
         <div className="w-screen">
@@ -181,7 +187,7 @@ const Profile = ({ params }: any) => {
                                 >
                                     Verify
                                 </button>
-                                <Modal isOpen={isOpen} onClose={onClose}>
+                                <Modal isOpen={onOpen} onClose={onClose}>
                                     <ModalOverlay />
                                     <ModalContent>
                                         <ModalHeader>Modal Title</ModalHeader>
@@ -193,16 +199,18 @@ const Profile = ({ params }: any) => {
                                         </ModalBody>
 
                                         <ModalFooter>
-                                            <Button
-                                                colorScheme="blue"
-                                                mr={3}
+                                            <button
+                                                className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-700"
                                                 onClick={onClose}
                                             >
                                                 Close
-                                            </Button>
-                                            <Button variant="ghost">
-                                                Secondary Action
-                                            </Button>
+                                            </button>
+                                            <button
+                                                className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-fuchsia-700"
+                                                onClick={handleSave}
+                                            >
+                                                Save
+                                            </button>
                                         </ModalFooter>
                                     </ModalContent>
                                 </Modal>
@@ -299,3 +307,6 @@ const Profile = ({ params }: any) => {
 };
 
 export default Profile;
+function useDisclosure(): { isOpen: any; onOpen: any; onClose: any } {
+    throw new Error("Function not implemented.");
+}
