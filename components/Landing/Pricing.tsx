@@ -70,14 +70,14 @@ export default function Pricing() {
     };
 
     return (
-        <Box py={12}>
+        <Box id="pricing" py={12}>
             <VStack spacing={2} textAlign="center">
                 <Heading as="h1" fontSize="4xl">
                     Your soulmate is waiting!
                 </Heading>
                 <Text fontSize="lg" color={"gray.500"}>
-                    Start with 14-day free trial. No cpurpleit card needed.
-                    Cancel at anytime.
+                    Start with 14-day free trial. No credit card needed. Cancel
+                    at anytime.
                 </Text>
             </VStack>
             <Stack
@@ -97,7 +97,7 @@ export default function Pricing() {
                                 ₹
                             </Text>
                             <Text fontSize="5xl" fontWeight="900">
-                                79
+                                129
                             </Text>
                             <Text fontSize="3xl" color="gray.500">
                                 /month
@@ -113,42 +113,40 @@ export default function Pricing() {
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Unlimited likes
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Unlimited matches
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Ad-free experience
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Basic profile verification
                             </ListItem>
                         </List>
                         <Box w="80%" pt={7}>
-                            <Button
-                                w="full"
-                                colorScheme="purple"
-                                variant="outline"
+                            <button
                                 onClick={handleClick}
                                 id="checkout"
+                                className="w-full px-4 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 border-2 border-fuchsia-500 rounded-lg hover:bg-fuchsia-300 focus:outline-none focus:shadow-outline-fuchsia"
                             >
                                 Start trial
-                            </Button>
+                            </button>
                         </Box>
                     </VStack>
                 </PriceWrapper>
@@ -189,7 +187,7 @@ export default function Pricing() {
                                     ₹
                                 </Text>
                                 <Text fontSize="5xl" fontWeight="900">
-                                    149
+                                    349
                                 </Text>
                                 <Text fontSize="3xl" color="gray.500">
                                     /month
@@ -205,41 +203,40 @@ export default function Pricing() {
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="purple.500"
+                                        color="rgb(217 70 239)"
                                     />
                                     All Basic Plan features
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="purple.500"
+                                        color="rgb(217 70 239)"
                                     />
                                     Premium profile verification
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="purple.500"
+                                        color="rgb(217 70 239)"
                                     />
                                     Boosted profile visibility
                                 </ListItem>
                                 <ListItem>
                                     <ListIcon
                                         as={FaCheckCircle}
-                                        color="purple.500"
+                                        color="rgb(217 70 239)"
                                     />
                                     Ability to see who likes your profile
                                 </ListItem>
                             </List>
                             <Box w="80%" pt={7}>
-                                <Button
+                                <button
                                     onClick={handleClick}
                                     id="checkout"
-                                    w="full"
-                                    colorScheme="purple"
+                                    className="w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-fuchsia-500 border border-transparent rounded-lg active:bg-fuchsia-500 hover:bg-fuchsia-700 focus:outline-none focus:shadow-outline-fuchsia"
                                 >
                                     Start trial
-                                </Button>
+                                </button>
                             </Box>
                         </VStack>
                     </Box>
@@ -254,7 +251,7 @@ export default function Pricing() {
                                 ₹
                             </Text>
                             <Text fontSize="5xl" fontWeight="900">
-                                349
+                                499
                             </Text>
                             <Text fontSize="3xl" color="gray.500">
                                 /month
@@ -270,42 +267,40 @@ export default function Pricing() {
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 All Plus Plan features
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Personalized matchmaking
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 One-on-one consultation with a matchmaker
                             </ListItem>
                             <ListItem>
                                 <ListIcon
                                     as={FaCheckCircle}
-                                    color="purple.500"
+                                    color="rgb(217 70 239)"
                                 />
                                 Exclusive access to premium features and events
                             </ListItem>
                         </List>
                         <Box w="80%" pt={7}>
-                            <Button
-                                w="full"
-                                colorScheme="purple"
-                                variant="outline"
+                            <button
                                 onClick={handleClick}
                                 id="checkout"
+                                className="w-full px-4 py-2 text-sm font-medium leading-5 text-black transition-colors duration-150 border-2 border-fuchsia-500 rounded-lg hover:bg-fuchsia-300 focus:outline-none focus:shadow-outline-fuchsia"
                             >
                                 Start trial
-                            </Button>
+                            </button>
                         </Box>
                     </VStack>
                 </PriceWrapper>

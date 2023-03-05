@@ -22,7 +22,7 @@ const Forms = (props: Props) => {
                             <Form3 />
                         )}
                     </div>
-                    {step === 4 && (
+                    {/* {step === 4 && (
                         <button
                             className="text-white bg-fuchsia-500 border-0 py-2 px-8 focus:outline-none hover:bg-fuchsia-600 rounded text-lg cursor-pointer"
                             onClick={(e: any) => {
@@ -31,7 +31,7 @@ const Forms = (props: Props) => {
                         >
                             Submit
                         </button>
-                    )}
+                    )} */}
                 </div>
             </section>
         </div>
