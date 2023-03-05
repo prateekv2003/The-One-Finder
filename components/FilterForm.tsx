@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { useContext } from "react";
+import { AppContext } from "context/AppContext";
 
 const people = [
   "Wade Cooper",
@@ -13,7 +15,10 @@ const people = [
   "Claudie Smitham",
   "Emil Schaefer",
 ];
-function MyListbox() {
+function MyListbox({ onApplyClick}) {
+  const { setIsDrinker, setIsSmooker, setWhoFor, setWhatFor } =
+    useContext(AppContext);
+
   const [selectedPerson, setSelectedPerson] = useState(people[0]);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -53,8 +58,13 @@ function MyListbox() {
         <select
           id="small"
           className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          onClick={(e) => {
+            setWhoFor(e.target.value);
+          }}
         >
-          <option selected value="M">Male</option>
+          <option selected value="M">
+            Male
+          </option>
           <option value="F">Female</option>
           <option value="NB">Other</option>
         </select>
@@ -69,20 +79,28 @@ function MyListbox() {
         <select
           id="small"
           className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          onClick={(e) => {
+            setWhatFor(e.target.value);
+          }}
         >
-          <option selected value="R">Relationship</option>
+          <option selected value="R">
+            Relationship
+          </option>
           <option value="C">Casual</option>
           <option value="F">Friendship</option>
         </select>
       </div>
       <div className="flex gap-2">
-        <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+        <div className="flex items-center px-4 border border-gray-200 rounded dark:border-gray-700">
           <input
             id="bordered-checkbox-1"
             type="checkbox"
             value=""
             name="bordered-checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            onChange={(e) => {
+              setIsSmooker(e.target.checked ? 'Y' : 'N');
+            }}
           />
           <label
             htmlFor="bordered-checkbox-1"
@@ -91,14 +109,16 @@ function MyListbox() {
             Smooker
           </label>
         </div>
-        <div className="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-700">
+        <div className="flex items-center px-4 border border-gray-200 rounded dark:border-gray-700">
           <input
-            checked
             id="bordered-checkbox-2"
             type="checkbox"
             value=""
             name="bordered-checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            onChange={(e) => {
+              setIsDrinker(e.target.checked ? 'Y' : 'N');
+            }}
           />
           <label
             htmlFor="bordered-checkbox-2"
@@ -107,6 +127,12 @@ function MyListbox() {
             Drinker
           </label>
         </div>
+        <button
+          onClick={() => onApplyClick()}
+          className="text-white bg-fuchsia-500 border-0 py-2 px-8 focus:outline-none hover:bg-fuchsia-600 rounded text-lg cursor-pointer"
+        >
+          Apply
+        </button>
       </div>
       {/* <label
         htmlFor="default"

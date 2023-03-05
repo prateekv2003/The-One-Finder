@@ -8,6 +8,8 @@ import Link from "next/link";
 import { AiOutlineStar } from "react-icons/ai";
 import AvatarDropdown from "./AvatarDropdown";
 import FilterForm from "./FilterForm";
+import { useContext } from "react";
+import { AppContext } from "context/AppContext";
 // const db: { name: String; url: String }[] = [
 //   {
 //     name: "Richard Hendricks",
@@ -36,6 +38,7 @@ function Advanced() {
   const [recs, setRecs] = useState([]);
   const [superLike, setSuperLike] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(recs.length - 1);
+  const { whoFor, whatFor, isDrinker, isSmooker } = useContext(AppContext);
   // used for outOfFrame closure
   const currentIndexRef = useRef(currentIndex);
 
@@ -85,24 +88,27 @@ function Advanced() {
     await childRefs[newIndex].current.restoreCard();
   };
 
-  useEffect(() => {
-    fetch("http://localhost:5000/v1/profile/rec?userId=640395ae0c47df0f8c1d339a&who_to_date=F&what_to_find=F&is_habit_drink=N&is_habit_smoke=N")
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  function fetchRecs() {
+    fetch(
+      `http://localhost:5000/v1/profile/rec?userId=640395ae0c47df0f8c1d339a&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
+    )
       .then((res) => res.json())
-      .then((data) => {
-        data.length = 20;
+      .then((data) => { 
         setRecs(data);
         console.log(data);
       });
-  }, []);
+  }
+  useEffect(() => {
+    fetchRecs();
+  }, [fetchRecs]);
 
   return (
     <div className="overflow-x-hidden h-screen flex flex-col-reverse md:flex-row items-center w-screen relative">
-      <div className="absolute top-4 right-4">
-        {/* <AvatarDropdown /> */}
-      </div>
+      <div className="absolute top-4 right-4">{/* <AvatarDropdown /> */}</div>
       <div className="md:w-[30%] border-r-2">chat section</div>
       <div className="relative md:w-[70%] h-full flex flex-col justify-center space-y-4 items-center bg-gray-100">
-        <FilterForm />
+        <FilterForm onApplyClick={() => fetchRecs()} />
 
         <div className="cardContainer">
           {recs &&
