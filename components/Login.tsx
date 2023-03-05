@@ -74,9 +74,9 @@ const Login = ({ providers }: Props) => {
                   {errors?.password && errors.password.message}
                 </small>
               </div>
-              <button className="w-full md:w-fit text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+              <Link href="/details" className="w-full md:w-fit text-white bg-purple-600 hover:bg-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
                 Login
-              </button>
+              </Link>
             </form>
 
             <div className="mt-6 grid grid-cols-3 items-center text-gray-400">
@@ -90,7 +90,7 @@ const Login = ({ providers }: Props) => {
                   provider.name === "Google" ? (
                     <button
                       key={id}
-                      onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+                      onClick={() => signIn(provider.id, { callbackUrl: "/details" })}
                       className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
                     >
                       <FcGoogle className="text-2xl" />
@@ -101,7 +101,7 @@ const Login = ({ providers }: Props) => {
                   ) : (
                     <button
                       key={id}
-                      onClick={() => signIn(provider.id, { callbackUrl: "/" })}
+                      onClick={() => signIn(provider.id, { callbackUrl: "/details" })}
                       className="bg-white border py-3 px-3 md:px-0 md:w-1/2 rounded-xl mt-5 flex justify-center items-center text-sm  duration-300 text-[#002D74]"
                     >
                       <BsGithub className="text-xl" />
