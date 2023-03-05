@@ -6,29 +6,18 @@ import { prisma } from "../../../utils/db";
 // import { PrismaClient } from '@prisma/client';
 // const prisma = new PrismaClient({ log: ['query'] });
 
-const createIfNotExists = async (
-  name: string,
-  email: string,
-  avatar: string
-) => {
-  const userExists = await prisma.user.findFirst({
-    where: {
-      email: email,
-    },
-  });
-  if (!userExists) {
-    // create user in database
-    const res = await prisma.user.create({
-      data: {
-        name: name,
-        email: email,
-        avatar: avatar,
-        // role: "user",
-      },
-    });
-    return res;
-  }
-  return userExists!;
+const createIfNotExists = async (name: string, email: string) => {
+  fetch(`${process.env.BASE_URL}/v1/auth/social`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email: email, social: "Google" }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    })
+    .catch((e) => console.log(e));
 };
 
 export const authOptions = {
@@ -47,25 +36,12 @@ export const authOptions = {
   callbacks: {
     async signIn({ user, profile }) {
       console.log("user", user);
-      const newUser = await createIfNotExists(
-        user.name,
-        user.email,
-        user.image
-      );
-      user.id = newUser.id;
+      const data = await createIfNotExists(user.name, user.email, user.image);
       return true;
     },
     async session({ session, token }) {
       session.user.uid = token.sub;
-      const user = await createIfNotExists(
-        session.user.name,
-        session.user.email,
-        session.user.image
-      );
-      console.log("user", user);
-      session.user.id = user.id;
-      session.user.avatar = user.avatar;
-      session.user.tag = user.username;
+      await createIfNotExists(session.user.name, session.user.email);
       return session;
     },
   },

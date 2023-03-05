@@ -3,6 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const { authService, userService, tokenService, emailService } = require('../services');
 
 const register = catchAsync(async (req, res) => {
+  req.body.createdAt = new Date().getTime();
   const user = await userService.createUser(req.body);
   const tokens = await tokenService.generateAuthTokens(user);
   res.status(httpStatus.CREATED).send({ user, tokens });
@@ -17,9 +18,15 @@ const login = catchAsync(async (req, res) => {
 
 const loginWithSocials = catchAsync(async (req, res) => {
   const { email, social } = req.body;
-  const user = await authService.loginUserWithSocials(email, password);
-  const tokens = await tokenService.generateAuthTokens(user);
-  res.send({ user, tokens });
+  const user = await authService.loginUserWithSocials(email);
+  if (!user) {
+    const user = await userService.createUser(req.body);
+    const tokens = await tokenService.generateAuthTokens(user);
+    res.status(httpStatus.CREATED).send({ user, tokens });
+  } else {
+    const tokens = await tokenService.generateAuthTokens(user);
+    res.send({ user, tokens });
+  }
 });
 
 const logout = catchAsync(async (req, res) => {
