@@ -5,7 +5,7 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { CgUndo } from "react-icons/cg";
 import { RxCross2 } from "react-icons/rx";
 import Link from "next/link";
-import { AiOutlineStar } from "react-icons/ai";
+import { AiOutlineStar, AiOutlineUser } from "react-icons/ai";
 import AvatarDropdown from "./AvatarDropdown";
 import FilterForm from "./FilterForm";
 import { useContext } from "react";
@@ -68,7 +68,7 @@ function Advanced() {
     // set last direction and decrease current index
     const swiped = (direction: any, nameToDelete: String, index: number) => {
         setLastDirection(direction);
-        fetch(`${process.env.BASE_URL}/v1/profile/swipe`, {
+        fetch(`http://localhost:5000/v1/profile/swipe`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -129,7 +129,7 @@ function Advanced() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function fetchRecs() {
         fetch(
-            `https://The-One-Finder-Backend.architrathod1.repl.co/v1/profile/rec?userId=${userId}&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
+            `http://localhost:5000/v1/profile/rec?userId=${userId}&who_to_date=${whoFor}&what_to_find=${whatFor}&is_habit_drink=${isDrinker}&is_habit_smoke=${isSmooker}`
         )
             .then((res) => res.json())
             .then((data) => {
@@ -229,10 +229,17 @@ function Advanced() {
                 </div>
                 <Link
                     href="/chat"
-                    title="Contact Sale"
+                    title="Chats"
                     className="fixed z-90 top-5 right-8 sm:bottom-10 sm:left-8 bg-blue-600 w-12 h-12 sm:w-20 sm:h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-lg hover:bg-blue-700 hover:drop-shadow-2xl hover:animate-bounce duration-300"
                 >
                     &#9993;
+                </Link>
+                <Link
+                    href={`/profile/${userId}`}
+                    title="Chats"
+                    className="fixed z-90 top-5 right-8 sm:bottom-10 sm:righ-8 bg-blue-600 w-12 h-12 sm:w-20 sm:h-20 rounded-full drop-shadow-lg flex justify-center items-center text-white text-lg hover:bg-blue-700 hover:drop-shadow-2xl "
+                >
+                    <AiOutlineUser />
                 </Link>
             </div>
         </div>

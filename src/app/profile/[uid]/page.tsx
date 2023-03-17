@@ -66,20 +66,18 @@ const Profile = ({ params }: any) => {
         "https://images.unsplash.com/photo-1533638842865-579068d17afe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
     );
     function fetchUser(id: string) {
-        fetch(
-            `https://The-One-Finder-Backend.architrathod1.repl.co/v1/users/${id}`
-        )
+        fetch(`http://localhost:5000/v1/users/${id}`)
             .then((res) => res.json())
             .then((data) => {
-                if (data.userImage) {
-                    if (data.gender === "M") {
-                        data.userImage =
-                            maleImages[data.user_id % maleImages.length];
-                    } else {
-                        data.userImage =
-                            femaleImage[data.user_id % femaleImage.length];
-                    }
+                // if (data.userImage === "") {
+                if (data.gender === "M") {
+                    data.userImage =
+                        maleImages[data.user_id % maleImages.length];
+                } else {
+                    data.userImage =
+                        femaleImage[data.user_id % femaleImage.length];
                 }
+                // }
                 setUser(data);
                 console.log("hi", data);
             });
@@ -90,15 +88,15 @@ const Profile = ({ params }: any) => {
         }
     }, [params.uid]);
 
-    const cmToInFt = (cm: any, inches = Math.round(cm / 2.54)) => ({
+    const cmToInFt = (cm, inches = Math.round(cm / 2.54)) => ({
         feet: Math.floor(inches / 12),
         inches: inches % 12,
     });
 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const handleSave = () => {
-        // return null;
+    const handleSave = (e) => {
+        console.log(e);
     };
 
     return (
@@ -180,16 +178,19 @@ const Profile = ({ params }: any) => {
                                     `❝${user && user?.bio}❞`}
                             </p>
                             <div className="pt-8 pb-2">
-                                <button className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full">
-                                    Message
-                                </button>
-                                <button
-                                    className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full"
-                                    onClick={isOpen}
-                                >
-                                    Verify
-                                </button>
-                                {/* <Modal isOpen={onOpen} onClose={onClose}>
+                                {/* <button className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full">
+                  Message
+                </button> */}
+                                {localStorage.getItem("userId") ===
+                                    user?.id && (
+                                    <button
+                                        className="bg-fuchsia-700 hover:bg-fuchsia-900 text-white font-bold py-2 px-4 rounded-full"
+                                        onClick={isOpen}
+                                    >
+                                        Verify
+                                    </button>
+                                )}
+                                <Modal isOpen={onOpen} onClose={onClose}>
                                     <ModalOverlay />
                                     <ModalContent>
                                         <ModalHeader>Modal Title</ModalHeader>
@@ -215,7 +216,7 @@ const Profile = ({ params }: any) => {
                                             </button>
                                         </ModalFooter>
                                     </ModalContent>
-                                </Modal> */}
+                                </Modal>
                             </div>
 
                             <div className="mt-4 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center gap-2">
@@ -266,10 +267,7 @@ const Profile = ({ params }: any) => {
                     <div className="w-full lg:w-2/5">
                         {/* Big profile image for side bar (desktop) */}
                         <img
-                            src={
-                                (user && user.userImage) ||
-                                "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80"
-                            }
+                            src={user && user.userImage}
                             className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
                         />
                         {/* Image from: http://unsplash.com/photos/MP0IUfwrn0A */}
