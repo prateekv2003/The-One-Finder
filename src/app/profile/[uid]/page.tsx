@@ -66,7 +66,9 @@ const Profile = ({ params }: any) => {
         "https://images.unsplash.com/photo-1533638842865-579068d17afe?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MjV8ekhKWE9FbE10ZXd8fGVufDB8fHx8&auto=format&fit=crop&w=700&q=60"
     );
     function fetchUser(id: string) {
-        fetch(`http://localhost:5000/v1/users/${id}`)
+        fetch(
+            `https://The-One-Finder-Backend.architrathod1.repl.co/v1/users/${id}`
+        )
             .then((res) => res.json())
             .then((data) => {
                 if (data.userImage) {
@@ -88,7 +90,7 @@ const Profile = ({ params }: any) => {
         }
     }, [params.uid]);
 
-    const cmToInFt = (cm, inches = Math.round(cm / 2.54)) => ({
+    const cmToInFt = (cm: any, inches = Math.round(cm / 2.54)) => ({
         feet: Math.floor(inches / 12),
         inches: inches % 12,
     });
@@ -264,7 +266,10 @@ const Profile = ({ params }: any) => {
                     <div className="w-full lg:w-2/5">
                         {/* Big profile image for side bar (desktop) */}
                         <img
-                            src={user && user.userImage}
+                            src={
+                                (user && user.userImage) ||
+                                "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1780&q=80"
+                            }
                             className="rounded-none lg:rounded-lg shadow-2xl hidden lg:block"
                         />
                         {/* Image from: http://unsplash.com/photos/MP0IUfwrn0A */}

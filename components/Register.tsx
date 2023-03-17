@@ -6,6 +6,7 @@ import React from "react";
 import { useForm, SubmitHandler, LiteralUnion } from "react-hook-form";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { name } from "static";
 import RegisterImage from "../public/cta2.gif";
 type Props = {
     providers: Record<
@@ -41,7 +42,7 @@ const Register = ({ providers }: Props) => {
             <div className=" flex rounded-2xl pt-10 w-full px-8 md:px-20 items-center">
                 <div className="md:w-1/2 px-2 md:px-2 ">
                     <h1 className="text-4xl antialiased font-bold dark:text-white">
-                        Welcome to Reflections
+                        Welcome to {name}
                     </h1>
                     <h2 className="font-bold text-2xl text-fuchsia-600 dark:text-[#e5ff12]">
                         Fast Register
