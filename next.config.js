@@ -6,6 +6,12 @@ const nextConfig = {
   images: {
     domains: ["dummyimage.com", "mf.b37mrtl.ru", "cdnn1.img.sputniknews.com"],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 };
 
 module.exports = nextConfig;

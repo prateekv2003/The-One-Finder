@@ -17,14 +17,14 @@ type Props = {};
 const Page = (props: Props) => {
     return (
         <div className="">
-            <Navbar />
+            <Navbar session={null} />
             <Hero />
             {/* <CardAnimation /> */}
-            <CTA/>
+            <CTA />
             <Features />
             <Testimonials />
             <Pricing />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };
