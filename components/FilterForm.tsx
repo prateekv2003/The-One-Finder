@@ -15,7 +15,7 @@ const people = [
   "Claudie Smitham",
   "Emil Schaefer",
 ];
-function MyListbox({ onApplyClick}) {
+function MyListbox({ onApplyClick }) {
   const { setIsDrinker, setIsSmooker, setWhoFor, setWhatFor } =
     useContext(AppContext);
 
@@ -99,14 +99,14 @@ function MyListbox({ onApplyClick}) {
             name="bordered-checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             onChange={(e) => {
-              setIsSmooker(e.target.checked ? 'Y' : 'N');
+              setIsSmooker(e.target.checked ? "Y" : "N");
             }}
           />
           <label
             htmlFor="bordered-checkbox-1"
             className="w-full py-2 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
-            Smooker
+            Smoker
           </label>
         </div>
         <div className="flex items-center px-4 w-full text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -117,7 +117,7 @@ function MyListbox({ onApplyClick}) {
             name="bordered-checkbox"
             className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             onChange={(e) => {
-              setIsDrinker(e.target.checked ? 'Y' : 'N');
+              setIsDrinker(e.target.checked ? "Y" : "N");
             }}
           />
           <label
